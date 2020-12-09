@@ -18,7 +18,7 @@ cursor.execute(
     " first_name VARCHAR(45) NOT NULL,"
     " last_name VARCHAR(45) NOT NULL,"
     " hand VARCHAR(1) NULL,"
-    " birth_date DATETIME NULL,"
+    " birth_date DATE NULL,"
     " country_code VARCHAR(45) NOT NULL,"
     "PRIMARY KEY (player_id));")
 
