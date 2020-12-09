@@ -1,3 +1,4 @@
+player_id,first_name,last_name,hand,birth_date,country_code
 100001,Gardnar,Mulloy,R,19131122,USA
 100002,Pancho,Segura,R,19210620,ECU
 100003,Frank,Sedgman,R,19271002,AUS
@@ -12453,7 +12454,7 @@
 112468,Warren,Kennedy,,,AUS
 112469,Fausto,Gardini,,19300308,ITA
 112470,Straight,Clark,,19250210,USA
-112471,Jack,Arkinstall,,192005,AUS
+112471,Jack,Arkinstall,,,AUS
 112472,G,Harvey,,,AUS
 112473,Lew,Gerrard,,19380405,NZL
 112474,Graeme,Stewart,,,AUS
@@ -13307,7 +13308,7 @@
 113322,Guy P,Jackson,,19210920,IRL
 113323,Douglas G,Snart,,,GBR
 113324,H Clive,Bernstein,,,GBR
-113325,Roland E,Carter,,192011,GBR
+113325,Roland E,Carter,,,GBR
 113326,Francis J,Wallis,,,GBR
 113327,Tim R,Miles,,,GBR
 113328,Jimmy,Jones,,19120710,GBR
@@ -14244,7 +14245,7 @@
 114259,Dudley Thomas Reynolds,Larcombe,,18790000,GBR
 114260,Jk,Frost,,,GBR
 114261,E,Warmant,,,GBR
-114262,Kreigh,Collins,,187501,USA
+114262,Kreigh,Collins,,,USA
 114263,Ernest R,Patterson,,,CAN
 114264,Frank Lorymer,Riseley,,18770706,GBR
 114265,Js,Talbot,,,GBR
@@ -14715,7 +14716,7 @@
 114730,We,Hansell,,,GBR
 114731,Wf,Clerke,,,GBR
 114732,J,Devans,,,GBR
-114733,Nalton,Womersley,,185903,GBR
+114733,Nalton,Womersley,,,GBR
 114734,Alexander Kaye,Butterworth,,18541204,GBR
 114735,Arnold,Saul,,,USA
 114736,Clarence,Carter,,,USA
@@ -15637,7 +15638,7 @@
 115652,Thomas C,Trask,,,USA
 115653,Es,Blair,,,USA
 115654,George A,Phelps,,,USA
-115655,Nat,Emerson,,187410,USA
+115655,Nat,Emerson,,,USA
 115656,Lydig,Hoyt,,,USA
 115657,Ws,Temis,,,USA
 115658,Rr,Livingston,,,USA
@@ -15756,7 +15757,7 @@
 115771,Goodwin,Hobbs,,,USA
 115772,C,Amory,,,USA
 115773,George C,Hinckley,,,USA
-115774,Carl,Gardner,,188502,USA
+115774,Carl,Gardner,,,USA
 115775,Ewing,Taylor,,,USA
 115776,Ct,Porter,,,USA
 115777,Sydney,Beals,,,USA
@@ -15770,7 +15771,7 @@
 115785,Gearse,Gardner Jr,,18870128,USA
 115786,William E,Keene,,,USA
 115787,Clarence C,Pell,,,USA
-115788,Frederick C,Colston,,188401,USA
+115788,Frederick C,Colston,,,USA
 115789,Andrew,Winsor,,,USA
 115790,Otto H,Heinck,,,USA
 115791,Sf,Bain,,,USA
@@ -15945,7 +15946,7 @@
 115960,Sc,Whipple,,,USA
 115961,Tm,Phetteplace,,,USA
 115962,Frank R,Tucker,,,USA
-115963,James Ford Coleman,Huntington,,186711,USA
+115963,James Ford Coleman,Huntington,,,USA
 115964,Hh,Whitman,,,USA
 115965,Jimmy,Johnson,,,CAN
 115966,Hm,Warner,,,UNK
