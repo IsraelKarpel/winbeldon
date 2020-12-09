@@ -60,8 +60,9 @@ for row in rows:
     if i % 1000 == 0:
         db.commit()
         end = time.time()
-        print("%.2f%% - %.2f sec" % ((i / rows_count * 100), (end - start)))
+        print("%.2f%% - %.0f sec" % ((i / rows_count * 100), (end - start)))
     i += 1
 
+db.commit()
 end = time.time()
-print("done uploading table to DB: %.2f sec" % (end - start))
+print("done uploading table to DB: %.0f sec" % (end - start))

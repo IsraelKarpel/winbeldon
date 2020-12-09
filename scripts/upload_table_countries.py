@@ -44,4 +44,4 @@ for row in rows:
 
 db.commit()
 end = time.time()
-print("done uploading table to DB: %.2f sec" % (end - start))
+print("done uploading table to DB: %.0f sec" % (end - start))
