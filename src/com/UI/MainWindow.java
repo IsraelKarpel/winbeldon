@@ -1,4 +1,4 @@
-package com.desktopApp;
+package com.UI;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class App extends JFrame {
+public class MainWindow extends JFrame {
     private JPanel panelMain;
     private JPanel JCalender;
     private JComboBox countriesComboBox;
@@ -19,7 +19,7 @@ public class App extends JFrame {
     private JDateChooser dateChooser = new JDateChooser(cld.getTime());
     private String date;
 
-    private App(){
+    private MainWindow(){
         setContentPane(panelMain);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -43,7 +43,7 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) {
-        new App().setVisible(true);
+        new MainWindow().setVisible(true);
     }
 
 }
