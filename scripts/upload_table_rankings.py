@@ -14,7 +14,7 @@ cursor = db.cursor()
 # CREATE TABLE rankings:
 cursor.execute(
     "CREATE TABLE rankings"
-    "(`date` DATE NOT NULL,"
+    "(`date` DATETIME NOT NULL,"
     " `rank` INT NOT NULL,"
     " `player_id` INT NOT NULL,"
     " `points` INT NOT NULL);")
