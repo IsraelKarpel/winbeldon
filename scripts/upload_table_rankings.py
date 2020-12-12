@@ -14,10 +14,11 @@ cursor = db.cursor()
 # CREATE TABLE rankings:
 cursor.execute(
     "CREATE TABLE rankings"
-    "(`date` DATE NOT NULL,"
+    "(`rank_date` DATE NOT NULL,"
     " `rank` INT NOT NULL,"
     " `player_id` INT NOT NULL,"
-    " `points` INT NOT NULL);")
+    " `points` INT NOT NULL,"
+    "PRIMARY KEY (rank_date,player_id));")
 
 print('table was created successfully')
 
