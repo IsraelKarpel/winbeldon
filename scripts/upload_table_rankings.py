@@ -23,7 +23,7 @@ cursor.execute(
 print('table was created successfully')
 
 # prepare sql statement
-SQL_INSERT_RANKINGS = 'INSERT INTO rankings VALUES (%s, %s, %s, %s)'
+SQL_INSERT_RANKINGS = 'INSERT IGNORE INTO rankings VALUES (%s, %s, %s, %s)'
 
 rankings_file = open('rankings.csv', 'r')
 
