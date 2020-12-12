@@ -15,7 +15,7 @@ cursor = db.cursor()
 cursor.execute(
     "CREATE TABLE countries"
     "(country_name VARCHAR(45) NOT NULL,"
-    " country_code VARCHAR(45) NOT NULL,"
+    " country_code VARCHAR(5) NOT NULL,"
     "PRIMARY KEY (country_code));")
 
 print('table was created successfully')

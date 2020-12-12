@@ -14,9 +14,9 @@ cursor = db.cursor()
 # CREATE TABLE players:
 cursor.execute(
     "CREATE TABLE tournaments"
-    "(tourney_id VARCHAR(60) NOT NULL,"
-    " tourney_name VARCHAR(60) NOT NULL,"
-    " surface VARCHAR(20) NULL,"
+    "(tourney_id VARCHAR(35) NOT NULL,"
+    " tourney_name VARCHAR(30) NOT NULL,"
+    " surface VARCHAR(10) NULL,"
     " draw_size INT NULL,"
     " tourney_level VARCHAR(2) NULL,"
     "PRIMARY KEY (tourney_id));")

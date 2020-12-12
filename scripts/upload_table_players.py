@@ -16,10 +16,10 @@ cursor.execute(
     "CREATE TABLE players"
     "(player_id INT NOT NULL,"
     " first_name VARCHAR(45) NOT NULL,"
-    " last_name VARCHAR(45) NOT NULL,"
+    " last_name VARCHAR(35) NOT NULL,"
     " hand VARCHAR(1) NULL,"
     " birth_date DATE NULL,"
-    " country_code VARCHAR(45) NOT NULL,"
+    " country_code VARCHAR(5) NOT NULL,"
     "PRIMARY KEY (player_id));")
 
 print('table was created successfully')
