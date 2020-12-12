@@ -13,23 +13,25 @@ cursor = db.cursor()
 
 # CREATE TABLE players:
 cursor.execute(
-    "CREATE TABLE matches_singles"
+    "CREATE TABLE matches_doubles"
     "(tourney_id VARCHAR(35) NOT NULL,"
     " tourney_date DATE NOT NULL,"
     " match_num INT NOT NULL,"
-    " winner_id INT NOT NULL,"
-    " loser_id INT NOT NULL,"
+    " winner1_id INT NOT NULL,"
+    " winner2_id INT NOT NULL,"
+    " loser1_id INT NOT NULL,"
+    " loser2_id INT NOT NULL,"
     " score VARCHAR(45) NULL,"
     " best_of INT NULL,"
     " round VARCHAR(10) NULL,"
-    "PRIMARY KEY (tourney_id,match_num,winner_id,loser_id));")
+    "PRIMARY KEY (tourney_id,match_num,winner1_id,winner2_id,loser1_id,loser2_id));")
 
 print('table was created successfully')
 
 # prepare sql statement
-SQL_INSERT_MATCHES_SINGLES = 'INSERT INTO matches_singles VALUES (%s, %s, %s, %s, %s, %s, %s, %s)'
+SQL_INSERT_MATCHES_DOUBLES = 'INSERT INTO matches_doubles VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
 
-players_file = open('matches_singles.csv', 'r')
+players_file = open('matches_doubles.csv', 'r')
 
 # skip first line (should be columns names)
 players_file.readline()
@@ -46,31 +48,44 @@ for row in rows:
     tourney_date = cols[1]
     match_num = int(cols[2])
 
-    winner_id = cols[3]
-    if winner_id == '':
-        winner_id = None
+    winner1_id = cols[3]
+    if winner1_id == '':
+        winner1_id = None
     else:
-        winner_id = int(winner_id)
+        winner1_id = int(winner1_id)
 
-    loser_id = cols[4]
-    if loser_id == '':
-        loser_id = None
+    winner2_id = cols[4]
+    if winner2_id == '':
+        winner2_id = None
     else:
-        loser_id = int(loser_id)
+        winner2_id = int(winner2_id)
 
-    score = cols[5]
+    loser1_id = cols[5]
+    if loser1_id == '':
+        loser1_id = None
+    else:
+        loser1_id = int(loser1_id)
 
-    best_of = cols[6]
+    loser2_id = cols[6]
+    if loser2_id == '':
+        loser2_id = None
+    else:
+        loser2_id = int(loser2_id)
+
+    score = cols[7]
+
+    best_of = cols[8]
     if best_of == '':
         best_of = None
     else:
         best_of = int(best_of)
 
-    round_col = cols[7]
+    round_col = cols[9]
 
     # create tuple of values
-    values = (tourney_id, tourney_date, match_num, winner_id, loser_id, score, best_of, round_col)
-    cursor.execute(SQL_INSERT_MATCHES_SINGLES, values)
+    values = (
+        tourney_id, tourney_date, match_num, winner1_id, winner2_id, loser1_id, loser2_id, score, best_of, round_col)
+    cursor.execute(SQL_INSERT_MATCHES_DOUBLES, values)
 
     # commit every X rows, print status of uploading
     if i % 10000 == 0:
