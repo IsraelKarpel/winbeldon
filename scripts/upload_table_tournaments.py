@@ -15,7 +15,7 @@ cursor = db.cursor()
 cursor.execute(
     "CREATE TABLE tournaments"
     "(tourney_id VARCHAR(35) NOT NULL,"
-    " tourney_name VARCHAR(30) NOT NULL,"
+    " tourney_name VARCHAR(35) NOT NULL,"
     " surface VARCHAR(10) NULL,"
     " draw_size INT NULL,"
     " tourney_level VARCHAR(2) NULL,"
@@ -56,7 +56,7 @@ for row in rows:
     cursor.execute(SQL_INSERT_TOURNAMENTS, values)
 
     # commit every X rows, print status of uploading
-    if i % 1000 == 0:
+    if i % 5000 == 0:
         db.commit()
         end = time.time()
         print("%.2f%% - %.0f sec" % ((i / rows_count * 100), (end - start)))
