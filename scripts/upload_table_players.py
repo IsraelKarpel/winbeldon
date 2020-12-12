@@ -50,7 +50,7 @@ for row in rows:
     else:
         birth_date = None
 
-    country_code = cols[5]
+    country_code = cols[5].strip()
 
     # create tuple of values
     values = (player_id, first_name, last_name, hand, birth_date, country_code)

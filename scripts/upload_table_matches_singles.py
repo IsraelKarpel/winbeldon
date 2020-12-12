@@ -66,7 +66,7 @@ for row in rows:
     else:
         best_of = int(best_of)
 
-    round_col = cols[7]
+    round_col = cols[7].strip()
 
     # create tuple of values
     values = (tourney_id, tourney_date, match_num, winner_id, loser_id, score, best_of, round_col)

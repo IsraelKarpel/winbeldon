@@ -36,7 +36,7 @@ start = time.time()
 for row in rows:
     cols = row.split(',')
     country_name = cols[0]
-    country_code = cols[1]
+    country_code = cols[1].strip()
 
     # create tuple of values
     values = (country_name, country_code)

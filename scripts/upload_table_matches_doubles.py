@@ -80,7 +80,7 @@ for row in rows:
     else:
         best_of = int(best_of)
 
-    round_col = cols[9]
+    round_col = cols[9].strip()
 
     # create tuple of values
     values = (

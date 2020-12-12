@@ -49,7 +49,7 @@ for row in rows:
     else:
         draw_size = int(draw_size)
 
-    tourney_level = cols[4]
+    tourney_level = cols[4].strip()
 
     # create tuple of values
     values = (tourney_id, tourney_name, surface, draw_size, tourney_level)
