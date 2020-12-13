@@ -1,7 +1,7 @@
 package com.UI;
 
-import com.toedter.calendar.JDateChooser;
 
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,20 +19,20 @@ public class MainWindow extends JFrame {
     private JDateChooser dateChooser = new JDateChooser(cld.getTime());
     private String date;
 
-    private MainWindow(){
+    private MainWindow() {
         setContentPane(panelMain);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setSize(400,250);
+        setSize(400, 250);
 
         //calender
-         dateChooser.setDateFormatString("dd/MM/yyyy");
-         JCalender.add(dateChooser);
+        dateChooser.setDateFormatString("dd/MM/yyyy");
+        JCalender.add(dateChooser);
 
-         GetDate();
+        GetDate();
     }
 
-    public void GetDate(){
+    public void GetDate() {
         pressMeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
