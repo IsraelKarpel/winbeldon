@@ -16,10 +16,11 @@ public class MainWindow extends JFrame {
     private JPanel JCalender;
     private JComboBox countriesComboBox;
     private JButton pressMeButton;
+    private JLabel resultLabel;
 
     private Calendar cld = Calendar.getInstance();
     private JDateChooser dateChooser = new JDateChooser(cld.getTime());
-    private String date;
+    private String dateSelected, countrySelected;
     private static List<Country> countries = new ArrayList<>();
 
     private MainWindow() {
@@ -33,8 +34,8 @@ public class MainWindow extends JFrame {
         dateChooser.setDateFormatString("dd/MM/yyyy");
         JCalender.add(dateChooser);
 
-        getDate();
         fillCountries();
+        setButtonListener();
     }
 
     private void fillCountries() {
@@ -45,10 +46,19 @@ public class MainWindow extends JFrame {
         }
     }
 
-    public void getDate() {
+    private void setButtonListener() {
         pressMeButton.addActionListener(event -> {
+
+            // fetch date
             SimpleDateFormat sdfmt = new SimpleDateFormat("dd/MM/yyyy");
-            date = sdfmt.format(dateChooser.getDate());
+            dateSelected = sdfmt.format(dateChooser.getDate());
+
+            // fetch country
+            countrySelected = (String) countriesComboBox.getSelectedItem();
+
+            // show result
+            resultLabel.setText(dateSelected + ", " + countrySelected);
+            resultLabel.setVisible(true);
         });
     }
 
