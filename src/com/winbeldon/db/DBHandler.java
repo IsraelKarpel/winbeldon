@@ -10,6 +10,7 @@ import java.util.List;
 
 import static com.winbeldon.Constants.*;
 
+// TODO 14/12/2020: make it singleton!
 public class DBHandler {
     Connection conn; // DB connection
     final String HOST = "localhost";
@@ -127,7 +128,7 @@ public class DBHandler {
 
     public List<RankPlayer> getPlayersByCountryAndDate(String countryCode, Date rankingDate) {
         System.out.println("Getting players by country from DB... ");
-        String QUERY = "SELECT *" +
+        String QUERY = "SELECT players.player_id, first_name, last_name, rankings.rank, points" +
                 " FROM winbeldon.players, winbeldon.rankings" +
                 " WHERE players.player_id=rankings.player_id" +
                 " AND country_code='" + countryCode + "'" +
