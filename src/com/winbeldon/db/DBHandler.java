@@ -1,9 +1,11 @@
 package com.winbeldon.db;
 
 import com.winbeldon.model.Country;
+import com.winbeldon.model.Player;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DBHandler {
@@ -12,7 +14,7 @@ public class DBHandler {
     final String PORT = "3306";
     final String SCHEMA = "winbeldon";
     final String USER = "root";
-    final String PASSWORD = "db202020";
+    final String PASSWORD = "12qw34er";
 
     /**
      * Empty constructor
@@ -88,6 +90,56 @@ public class DBHandler {
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
             return countries;
+        } catch (NullPointerException e){
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return countries;
         }
     }
+
+    public List<Date> getRankingDatesList(){
+        System.out.print("Getting ranking dates from DB... ");
+        String QUERY = "SELECT distinct rank_date FROM winbeldon.rankings";
+        List<Date> rankingDates = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
+            while (rs.next()) {
+                Date date =(rs.getDate("rank_date"));
+                rankingDates.add(date);
+            }
+            System.out.println("Done!");
+            return rankingDates;
+        }  catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return rankingDates;
+        } catch (NullPointerException e){
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return rankingDates;
+        }
+    }
+
+    public List<Player> getPlayersByCountryAndDate(String countryCode, Date rankingDate){
+        System.out.println("Getting players by country from DB... ");
+        String QUERY = "SELECT players.player_id, first_name, last_name, hand, birth_date, country_code" +
+                " FROM winbeldon.players, winbeldon.rankings where players.player_id=rankings.player_id and" +
+                " country_code='"+countryCode +"' and rank_date='" + rankingDate+"' order by rankings.rank";
+        List<Player> playerList = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
+            while (rs.next()) {
+                Player player = new Player(rs.getInt("player_id"),rs.getString("first_name"),
+                        rs.getString("last_name"), rs.getString("hand"),
+                        rs.getDate("birth_date"),rs.getString("country_code"));
+                playerList.add(player);
+            }
+            System.out.println("Done!");
+            return playerList;
+        }  catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return playerList;
+        } catch (NullPointerException e){
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return playerList;
+        }
+    }
+
 }
