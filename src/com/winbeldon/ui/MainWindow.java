@@ -77,6 +77,8 @@ public class MainWindow extends JFrame {
         for (Country c : countries) {
             countriesComboBox.addItem(c.getCountryName());
         }
+        // set default country to israel
+        countriesComboBox.setSelectedItem("Israel");
     }
 
     private void fillRankingDates() {
