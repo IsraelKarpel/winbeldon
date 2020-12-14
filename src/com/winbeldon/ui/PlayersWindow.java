@@ -2,10 +2,9 @@ package com.winbeldon.ui;
 
 import com.winbeldon.db.DBHandler;
 import com.winbeldon.model.Country;
-import com.winbeldon.model.Player;
+import com.winbeldon.model.RankPlayer;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,19 +17,18 @@ public class PlayersWindow extends JFrame {
     private Date rankingDate;
     DBHandler db;
 
-    private static List<Player> players = new ArrayList<>();
+    private static List<RankPlayer> rankPlayers = new ArrayList<>();
 
-    private void fillPlayersList(){
+    private void fillPlayersList() {
         DefaultListModel dlm = new DefaultListModel();
-        for (Player player: players){
-            dlm.addElement(player.getFullName());
+        for (RankPlayer rankPlayer : rankPlayers) {
+            dlm.addElement(rankPlayer.toString());
         }
         playersList.setModel(dlm);
     }
 
 
-    PlayersWindow(Country country, Date date){
-        country = country;
+    PlayersWindow(Country country, Date date) {
         rankingDate = date;
         countryTextField.setText(country.getCountryName());
 
@@ -44,7 +42,7 @@ public class PlayersWindow extends JFrame {
 
         db = new DBHandler();
         db.openConnection();
-        players = db.getPlayersByCountryAndDate(country.getCountryCode(),date);
+        rankPlayers = db.getPlayersByCountryAndDate(country.getCountryCode(), date);
         fillPlayersList();
         playersList.setVisible(true);
     }
