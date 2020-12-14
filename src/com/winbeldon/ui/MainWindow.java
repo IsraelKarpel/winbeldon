@@ -6,6 +6,10 @@ import com.winbeldon.db.DBHandler;
 import com.winbeldon.model.Country;
 
 import javax.swing.*;
+import javax.swing.plaf.ComboBoxUI;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,14 +17,13 @@ import java.util.Date;
 import java.util.List;
 
 public class MainWindow extends JFrame {
-    private JPanel panelMain;
     private JComboBox countriesComboBox;
     private JButton pressMeButton;
-    private JLabel resultLabel;
     private JComboBox datesComboBox;
-
     private static List<Country> countries = new ArrayList<>();
     private static List<Date> rankingDates = new ArrayList<>();
+    private JPanel panelMain;
+    private JLabel resultLabel;
 
     private MainWindow() {
         setContentPane(panelMain);
@@ -29,37 +32,59 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setSize(800, 600);
         setLocation(getWidth() / 2, getHeight() / 2); // position window on center
-
         resultLabel.setVisible(false);
-
         fillCountries();
         fillRankingDates();
 
+        pressMeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Country selectedCountry = getSelectedCountry();
+                Date selectedRankingDate = getSelectedDate();
+                new PlayersWindow(selectedCountry, selectedRankingDate);
+            }
+        });
     }
 
-    private void fillCountries() {
-        countriesComboBox.setVisible(true);
-
-        for (Country c : countries) {
-            countriesComboBox.addItem(c.getCountryName());
+    private Country getSelectedCountry() {
+        try {
+            return countries.get(countriesComboBox.getSelectedIndex());
+        } catch (NullPointerException e) {
+            System.out.println("ERROR - You have not chosen any country - " + e.getMessage());
+            return null;
         }
     }
 
-    private void fillRankingDates(){
-        countriesComboBox.setVisible(true);
-        for (Date d : rankingDates){
-            datesComboBox.addItem(d.toString());
+    private Date getSelectedDate() {
+        try {
+            return rankingDates.get(datesComboBox.getSelectedIndex());
+        } catch (NullPointerException e) {
+            System.out.println("ERROR - you have not chosen any date - " + e.getMessage());
+            return null;
         }
     }
-
 
     public static void main(String[] args) {
         DBHandler db = new DBHandler();
         db.openConnection();
         countries = db.getCountriesList();
         rankingDates = db.getRankingDatesList();
-
         new MainWindow().setVisible(true);
     }
+
+    private void fillCountries() {
+        countriesComboBox.setVisible(true);
+        for (Country c : countries) {
+            countriesComboBox.addItem(c.getCountryName());
+        }
+    }
+
+    private void fillRankingDates() {
+        countriesComboBox.setVisible(true);
+        for (Date d : rankingDates) {
+            datesComboBox.addItem(d.toString());
+        }
+    }
+
 
 }
