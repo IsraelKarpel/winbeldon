@@ -5,19 +5,23 @@ import com.winbeldon.model.Country;
 import com.winbeldon.model.RankPlayer;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PlayersWindow extends JFrame {
+public class PlayersWindow extends JFrame implements ListSelectionListener {
     private JList playersList;
     private JPanel panelMain;
     private JTextField countryTextField;
+    private JButton zButton;
     private Country country;
     private Date rankingDate;
     DBHandler db;
 
     private static List<RankPlayer> rankPlayers = new ArrayList<>();
+
 
     private void fillPlayersList() {
         DefaultListModel dlm = new DefaultListModel();
@@ -25,6 +29,7 @@ public class PlayersWindow extends JFrame {
             dlm.addElement(rankPlayer.toString());
         }
         playersList.setModel(dlm);
+        playersList.addListSelectionListener(this);
     }
 
 
@@ -46,5 +51,19 @@ public class PlayersWindow extends JFrame {
         fillPlayersList();
         playersList.setVisible(true);
     }
+
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        int returns = playersList.getSelectedIndex();
+        if (!e.getValueIsAdjusting()) {
+            int id = rankPlayers.get(returns).getPlayerId();
+            new DetailsWindow(rankPlayers.get(returns).getPlayerId());
+            //System.out.println(rankPlayers.get(returns));
+        } else {
+
+        }
+    }
+
 }
 

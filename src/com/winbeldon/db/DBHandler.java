@@ -1,6 +1,7 @@
 package com.winbeldon.db;
 
 import com.winbeldon.model.Country;
+import com.winbeldon.model.Details;
 import com.winbeldon.model.RankPlayer;
 
 import java.sql.*;
@@ -17,7 +18,7 @@ public class DBHandler {
     final String PORT = "3306";
     final String SCHEMA = "winbeldon";
     final String USER = "root";
-    final String PASSWORD = "db202020";
+    final String PASSWORD = "Emuna123!";
 
     /**
      * Empty constructor
@@ -158,4 +159,29 @@ public class DBHandler {
         }
     }
 
+    public Details getDetails(int id) {
+        Details details = new Details();
+        String first_name, last_name, hand, birth_date, country_name;
+        String QUERY = "SELECT DISTINCT first_name ,last_name, hand, birth_date, country_code" +
+                " FROM winbeldon.players" +
+                " WHERE '" + id + "' = player_id";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
+                    rs.next();
+                    details.SetDetails(
+                    rs.getString(FIRST_NAME),
+                    rs.getString(LAST_NAME), rs.getString(HAND),
+                    rs.getString(BIRTH_DATE),
+                    rs.getString(COUNTRY_CODE));
+            System.out.println("Done!");
+            return details;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return details;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return details;
+        }
+
+
+    }
 }
