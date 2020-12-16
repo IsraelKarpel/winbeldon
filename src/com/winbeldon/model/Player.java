@@ -19,9 +19,29 @@ public class Player {
         this.countryCode = countryCode;
     }
 
+    public int getPlayerId() {
+        return playerId;
+    }
+
+    public String getHand() {
+        return hand;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
     public String getFullName() {
         return firstName + " " + lastName;
     }
 
+    @Override
+    public String toString() {
+        return getFullName() + ", " + getBirthDate() + ", " + getHand() + ", " + getCountryCode();
 
+    }
 }

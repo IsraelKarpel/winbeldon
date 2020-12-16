@@ -1,19 +1,22 @@
 package com.winbeldon.ui;
 
 import com.winbeldon.db.DBHandler;
-import com.winbeldon.model.Details;
+import com.winbeldon.model.Player;
 
 import javax.swing.*;
 
 public class DetailsWindow extends JFrame {
     private JPanel panelMain;
-    private JLabel deta;
-    private DBHandler db = DBHandler.getInstance();
-    private int id;
+    private JLabel data;
+    private final DBHandler db = DBHandler.getInstance();
 
     private void showDetails(int id) {
-        Details details = db.getDetails(id);
-        deta.setText(details.GetAll());
+        Player player = db.getPlayerById(id);
+        int playerId = player.getPlayerId();
+
+        int total_wins = db.getTotalMatchesWinsByPlayerId(playerId);
+        int total_finals_wins = db.getTotalFinalsMatchesWinsByPlayerId(playerId);
+        data.setText(player.toString() + ", " + total_wins + ", " + total_finals_wins);
     }
 
 
@@ -26,7 +29,7 @@ public class DetailsWindow extends JFrame {
         setLocation(getWidth() / 2, getHeight() / 2); // position window on center
         setVisible(true);
 
-        //Details det = db.getDetails(id);
+        data.setText("LOADING...");
         showDetails(id);
     }
 }

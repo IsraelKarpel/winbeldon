@@ -1,7 +1,7 @@
 package com.winbeldon.db;
 
 import com.winbeldon.model.Country;
-import com.winbeldon.model.Details;
+import com.winbeldon.model.Player;
 import com.winbeldon.model.RankPlayer;
 
 import java.sql.*;
@@ -162,29 +162,64 @@ public class DBHandler {
         }
     }
 
-    public Details getDetails(int id) {
-        Details details = new Details();
-        String first_name, last_name, hand, birth_date, country_name;
-        String QUERY = "SELECT DISTINCT first_name ,last_name, hand, birth_date, country_code" +
+    public Player getPlayerById(int id) {
+        String QUERY = "SELECT *" +
                 " FROM winbeldon.players" +
                 " WHERE '" + id + "' = player_id";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
             rs.next();
-            details.SetDetails(
+            Player player = new Player(
+                    rs.getInt(PLAYER_ID),
                     rs.getString(FIRST_NAME),
-                    rs.getString(LAST_NAME), rs.getString(HAND),
-                    rs.getString(BIRTH_DATE),
+                    rs.getString(LAST_NAME),
+                    rs.getString(HAND),
+                    rs.getDate(BIRTH_DATE),
                     rs.getString(COUNTRY_CODE));
-            System.out.println("Done!");
-            return details;
+
+            return player;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
-            return details;
+            return null;
         } catch (NullPointerException e) {
             System.out.println(("ERROR NullPointerException - " + e.getMessage()));
-            return details;
+            return null;
         }
+    }
 
+    public int getTotalMatchesWinsByPlayerId(int id) {
+        String QUERY_TOTAL_WINS = "SELECT COUNT(*) AS total_wins" +
+                " FROM winbeldon.matches_singles" +
+                " WHERE winner_id = " + id;
 
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_WINS)) {
+            rs.next();
+            int total_wins = rs.getInt("total_wins");
+            return total_wins;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return -1;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return -1;
+        }
+    }
+
+    public int getTotalFinalsMatchesWinsByPlayerId(int id) {
+        String QUERY_TOTAL_FINALS_WINS = "SELECT COUNT(*) AS total_finals_wins" +
+                " FROM winbeldon.matches_singles" +
+                " WHERE winner_id = " + id +
+                " AND round = 'F'";
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_FINALS_WINS)) {
+            rs.next();
+            int total_wins = rs.getInt("total_finals_wins");
+            return total_wins;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return -1;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return -1;
+        }
     }
 }
