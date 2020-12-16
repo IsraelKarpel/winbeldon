@@ -18,7 +18,7 @@ public class PlayersWindow extends JFrame implements ListSelectionListener {
     private JButton zButton;
     private Country country;
     private Date rankingDate;
-    DBHandler db;
+    DBHandler db = DBHandler.getInstance();
 
     private static List<RankPlayer> rankPlayers = new ArrayList<>();
 
@@ -45,8 +45,6 @@ public class PlayersWindow extends JFrame implements ListSelectionListener {
         setLocation(getWidth() / 2, getHeight() / 2); // position window on center
         setVisible(true);
 
-        db = new DBHandler();
-        db.openConnection();
         rankPlayers = db.getPlayersByCountryAndDate(country.getCountryCode(), date);
         fillPlayersList();
         playersList.setVisible(true);

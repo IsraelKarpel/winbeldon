@@ -18,13 +18,16 @@ public class DBHandler {
     final String PORT = "3306";
     final String SCHEMA = "winbeldon";
     final String USER = "root";
-    final String PASSWORD = "Emuna123!";
+    final String PASSWORD = "db202020";
+    private final static DBHandler INSTANCE = new DBHandler();
 
-    /**
-     * Empty constructor
-     */
-    public DBHandler() {
+
+    private DBHandler() {
         this.conn = null;
+    }
+
+    public static DBHandler getInstance() {
+        return INSTANCE;
     }
 
     /**
@@ -166,8 +169,8 @@ public class DBHandler {
                 " FROM winbeldon.players" +
                 " WHERE '" + id + "' = player_id";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
-                    rs.next();
-                    details.SetDetails(
+            rs.next();
+            details.SetDetails(
                     rs.getString(FIRST_NAME),
                     rs.getString(LAST_NAME), rs.getString(HAND),
                     rs.getString(BIRTH_DATE),
