@@ -65,7 +65,7 @@ public class MainWindow extends JFrame {
     }
 
     public static void main(String[] args) {
-        DBHandler db = new DBHandler();
+        DBHandler db = DBHandler.getInstance();
         db.openConnection();
         countries = db.getCountriesList();
         rankingDates = db.getRankingDatesList();

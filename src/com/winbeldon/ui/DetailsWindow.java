@@ -8,10 +8,10 @@ import javax.swing.*;
 public class DetailsWindow extends JFrame {
     private JPanel panelMain;
     private JLabel deta;
-    private DBHandler db;
+    private DBHandler db = DBHandler.getInstance();
     private int id;
 
-    private void showDetails(int id){
+    private void showDetails(int id) {
         Details details = db.getDetails(id);
         deta.setText(details.GetAll());
     }
@@ -25,8 +25,7 @@ public class DetailsWindow extends JFrame {
         setSize(800, 600);
         setLocation(getWidth() / 2, getHeight() / 2); // position window on center
         setVisible(true);
-        db = new DBHandler();
-        db.openConnection();
+
         //Details det = db.getDetails(id);
         showDetails(id);
     }
