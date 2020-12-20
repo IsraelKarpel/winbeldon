@@ -18,7 +18,7 @@ public class DBHandler {
     final String PORT = "3306";
     final String SCHEMA = "winbeldon";
     final String USER = "root";
-    final String PASSWORD = "db202020";
+    final String PASSWORD = "Emuna123!";
     private final static DBHandler INSTANCE = new DBHandler();
 
 
@@ -132,12 +132,12 @@ public class DBHandler {
 
     public List<RankPlayer> getPlayersByCountryAndDate(String countryCode, Date rankingDate) {
         System.out.println("Getting players by country from DB... ");
-        String QUERY = "SELECT players.player_id, first_name, last_name, rankings.rank, points" +
+        String QUERY = "SELECT players.player_id, first_name, last_name, rankings.player_rank, points" +
                 " FROM winbeldon.players, winbeldon.rankings" +
                 " WHERE players.player_id=rankings.player_id" +
                 " AND country_code='" + countryCode + "'" +
                 " AND rank_date='" + rankingDate + "'" +
-                " ORDER BY rankings.rank";
+                " ORDER BY rankings.player_rank";
 
         List<RankPlayer> rankPlayerList = new ArrayList<>();
 
@@ -147,7 +147,7 @@ public class DBHandler {
                         rs.getInt(PLAYER_ID),
                         rs.getString(FIRST_NAME),
                         rs.getString(LAST_NAME),
-                        rs.getInt(RANK),
+                        rs.getInt(PLAYER_RANK),
                         rs.getInt(POINTS));
                 rankPlayerList.add(player);
             }
@@ -186,7 +186,7 @@ public class DBHandler {
         }
     }
 
-    public int getTotalMatchesWinsByPlayerId(int id) {
+    public int getSinglesTotalMatchesWinsByPlayerId(int id) {
         String QUERY_TOTAL_WINS = "SELECT COUNT(*) AS total_wins" +
                 " FROM winbeldon.matches_singles" +
                 " WHERE winner_id = " + id;
@@ -204,7 +204,7 @@ public class DBHandler {
         }
     }
 
-    public int getTotalFinalsMatchesWinsByPlayerId(int id) {
+    public int getSinglesTotalFinalsMatchesWinsByPlayerId(int id) {
         String QUERY_TOTAL_FINALS_WINS = "SELECT COUNT(*) AS total_finals_wins" +
                 " FROM winbeldon.matches_singles" +
                 " WHERE winner_id = " + id +
@@ -220,6 +220,78 @@ public class DBHandler {
         } catch (NullPointerException e) {
             System.out.println(("ERROR NullPointerException - " + e.getMessage()));
             return -1;
+        }
+    }
+
+    public int getDoublesTotalMatchesWinsByPlayerId(int id) {
+        String QUERY_TOTAL_WINS = "SELECT COUNT(*) AS total_wins" +
+                " FROM winbeldon.matches_doubles" +
+                " WHERE winner1_id = " + id + " OR winner2_id = " + id;
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_WINS)) {
+            rs.next();
+            int total_wins = rs.getInt("total_wins");
+            return total_wins;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return -1;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return -1;
+        }
+    }
+
+    public int getDoublesTotalFinalsMatchesWinsByPlayerId(int id) {
+        String QUERY_TOTAL_FINALS_WINS = "SELECT COUNT(*) AS total_finals_wins" +
+                " FROM winbeldon.matches_doubles" +
+                " WHERE (winner1_id = " + id + " OR winner2_id = " + id + ")" +
+                " AND round = 'F'";
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_FINALS_WINS)) {
+            rs.next();
+            int total_wins = rs.getInt("total_finals_wins");
+            return total_wins;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return -1;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return -1;
+        }
+    }
+
+    public int getPlayerBestRankByPlayerId(int id) {
+        String QUERY_BEST_RANK = "SELECT MIN(player_rank) " +
+                "FROM winbeldon.rankings " +
+                "WHERE player_id = " + id;
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_BEST_RANK)) {
+            rs.next();
+            int rank = rs.getInt("MIN(player_rank)");
+            return rank;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return -1;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return -1;
+        }
+    }
+
+    public Date getDateOfBestRankByPlayerId (int id) {
+        String QUERY_DATE_OF_BEST_RANK = "SELECT rank_date" +
+                " FROM winbeldon.rankings " +
+                "WHERE player_id=" + id + " AND player_rank = (SELECT MIN(player_rank)" +
+                " FROM winbeldon.rankings WHERE player_id=" + id +")";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
+            rs.next();
+            Date date  = rs.getDate("rank_date");
+            return date;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return null;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return null;
         }
     }
 }
