@@ -9,6 +9,6 @@ public class Constants {
     public static final String COUNTRY_CODE = "country_code";
     public static final String COUNTRY_NAME = "country_name";
     public static final String RANK_DATE = "rank_date";
-    public static final String RANK = "rank";
+    public static final String PLAYER_RANK = "player_rank";
     public static final String POINTS = "points";
 }

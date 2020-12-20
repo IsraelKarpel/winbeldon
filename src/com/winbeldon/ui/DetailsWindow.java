@@ -4,6 +4,7 @@ import com.winbeldon.db.DBHandler;
 import com.winbeldon.model.Player;
 
 import javax.swing.*;
+import java.util.Date;
 
 public class DetailsWindow extends JFrame {
     private JPanel panelMain;
@@ -14,9 +15,18 @@ public class DetailsWindow extends JFrame {
         Player player = db.getPlayerById(id);
         int playerId = player.getPlayerId();
 
-        int total_wins = db.getTotalMatchesWinsByPlayerId(playerId);
-        int total_finals_wins = db.getTotalFinalsMatchesWinsByPlayerId(playerId);
-        data.setText(player.toString() + ", " + total_wins + ", " + total_finals_wins);
+        int singles_total_wins = db.getSinglesTotalMatchesWinsByPlayerId(playerId);
+        int singles_total_finals_wins = db.getSinglesTotalFinalsMatchesWinsByPlayerId(playerId);
+        int doubles_total_wins = db.getDoublesTotalMatchesWinsByPlayerId(playerId);
+        int doubles_total_finals_wins = db.getDoublesTotalFinalsMatchesWinsByPlayerId(playerId);
+        int best_rank = db.getPlayerBestRankByPlayerId(id);
+        Date date_of_best_rank = db.getDateOfBestRankByPlayerId(id);
+
+        data.setText("<html><u>Full name:</u> " + player.getFullName() + "<br><u>Birth Date:</u> " + player.getBirthDate()
+        + "<br><u>Hand:</u> " + player.getHand() + "<br><u>Country:</u> " + player.getCountryCode() + "<br><u>Total wins in singles matches:</u> "
+        + singles_total_wins + "<br><u>Total times Champion in singles matches:</u> " + singles_total_finals_wins + "<br><u>Total wins on doubles matches:</u>" +
+         doubles_total_wins + "<br><u>Total times Champion in doubles matches:</u>" + doubles_total_finals_wins + "<br><u>Best Rank:</u> " +
+        best_rank + "<br><u>The Date where he got the best rank:</u> " + date_of_best_rank + "</html>");
     }
 
 
