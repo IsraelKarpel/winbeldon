@@ -5,20 +5,17 @@ import com.winbeldon.db.DBHandler;
 import com.winbeldon.model.Country;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class MainWindow extends JFrame {
     private JComboBox countriesComboBox;
-    private JButton pressMeButton;
+    private JButton searchButton;
     private JComboBox datesComboBox;
     private static List<Country> countries = new ArrayList<>();
     private static List<Date> rankingDates = new ArrayList<>();
     private JPanel panelMain;
-    private JLabel resultLabel;
 
     private MainWindow() {
         setContentPane(panelMain);
@@ -27,11 +24,10 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setSize(800, 600);
         setLocation(getWidth() / 2, getHeight() / 2); // position window on center
-        resultLabel.setVisible(false);
         fillCountries();
         fillRankingDates();
 
-        pressMeButton.addActionListener(e -> {
+        searchButton.addActionListener(e -> {
             Country selectedCountry = getSelectedCountry();
             Date selectedRankingDate = getSelectedDate();
             new PlayersWindow(selectedCountry, selectedRankingDate);
