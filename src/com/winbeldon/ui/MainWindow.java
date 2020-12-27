@@ -1,18 +1,13 @@
 package com.winbeldon.ui;
 
 
-import com.toedter.calendar.JDateChooser;
 import com.winbeldon.db.DBHandler;
 import com.winbeldon.model.Country;
 
 import javax.swing.*;
-import javax.swing.plaf.ComboBoxUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -66,10 +61,12 @@ public class MainWindow extends JFrame {
 
     public static void main(String[] args) {
         DBHandler db = DBHandler.getInstance();
-        db.openConnection();
-        countries = db.getCountriesList();
-        rankingDates = db.getRankingDatesList();
-        new MainWindow().setVisible(true);
+        boolean isOpen = db.openConnection();
+        if (isOpen) {
+            countries = db.getCountriesList();
+            rankingDates = db.getRankingDatesList();
+            new MainWindow().setVisible(true);
+        }
     }
 
     private void fillCountries() {

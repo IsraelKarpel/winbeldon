@@ -3,7 +3,10 @@ package com.winbeldon.db;
 import com.winbeldon.model.Country;
 import com.winbeldon.model.Player;
 import com.winbeldon.model.RankPlayer;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,11 +17,11 @@ import static com.winbeldon.Constants.*;
 // TODO 14/12/2020: make it singleton!
 public class DBHandler {
     Connection conn; // DB connection
-    final String HOST = "localhost";
-    final String PORT = "3306";
-    final String SCHEMA = "winbeldon";
-    final String USER = "root";
-    final String PASSWORD = "Emuna123!";
+    final String HOST_KEY = "host";
+    final String PORT_KEY = "port";
+    final String SCHEMA_KEY = "schema";
+    final String USER_KEY = "user";
+    final String PASSWORD_KEY = "password";
     private final static DBHandler INSTANCE = new DBHandler();
 
 
@@ -34,6 +37,24 @@ public class DBHandler {
      * @return true if the connection was successfully set
      */
     public boolean openConnection() {
+        String host, port, schema, user, password;
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(new FileReader("src/config.json"));
+
+            // A JSON object. Key value pairs are unordered. JSONObject supports java.util.Map interface.
+            JSONObject jsonObject = (JSONObject) obj;
+
+            host = String.valueOf(jsonObject.get(HOST_KEY));
+            port = String.valueOf(jsonObject.get(PORT_KEY));
+            schema = String.valueOf(jsonObject.get(SCHEMA_KEY));
+            user = String.valueOf(jsonObject.get(USER_KEY));
+            password = String.valueOf(jsonObject.get(PASSWORD_KEY));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
 
         // loading the driver
         try {
@@ -47,12 +68,6 @@ public class DBHandler {
         System.out.print("Trying to connect... ");
 
         // creating the connection.
-        //TODO 13/12/2020: Parameters should be taken from config file.
-        String host = HOST;
-        String port = PORT;
-        String schema = SCHEMA;
-        String user = USER;
-        String password = PASSWORD;
         try {
             conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + schema + "?serverTimezone=UTC", user, password);
         } catch (SQLException e) {
@@ -277,14 +292,14 @@ public class DBHandler {
         }
     }
 
-    public Date getDateOfBestRankByPlayerId (int id) {
+    public Date getDateOfBestRankByPlayerId(int id) {
         String QUERY_DATE_OF_BEST_RANK = "SELECT rank_date" +
                 " FROM winbeldon.rankings " +
                 "WHERE player_id=" + id + " AND player_rank = (SELECT MIN(player_rank)" +
-                " FROM winbeldon.rankings WHERE player_id=" + id +")";
+                " FROM winbeldon.rankings WHERE player_id=" + id + ")";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
             rs.next();
-            Date date  = rs.getDate("rank_date");
+            Date date = rs.getDate("rank_date");
             return date;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
