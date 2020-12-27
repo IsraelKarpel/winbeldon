@@ -95,5 +95,9 @@ for row in rows:
     i += 1
 
 db.commit()
+
+SQL_INDEX_BY_WINNER_ID = 'CREATE INDEX matches_doubles_winner1_id_winner2_id_index ON matches_doubles (winner1_id, winner2_id);'
+cursor.execute(SQL_INDEX_BY_WINNER_ID)
+
 end = time.time()
 print("done uploading table to DB: %.0f sec" % (end - start))

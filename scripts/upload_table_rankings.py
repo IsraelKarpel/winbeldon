@@ -54,5 +54,9 @@ for row in rows:
     i += 1
 
 db.commit()
+
+SQL_INDEX = 'CREATE INDEX rankings_rank_date_player_rank_index ON rankings (rank_date, player_rank);'
+cursor.execute(SQL_INDEX)
+
 end = time.time()
 print("done uploading table to DB: %.0f sec" % (end - start))
