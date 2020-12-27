@@ -5,38 +5,61 @@ import com.winbeldon.model.Country;
 import com.winbeldon.model.RankPlayer;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class PlayersWindow extends JFrame implements ListSelectionListener {
-    private JList playersList;
+public class PlayersWindow extends JFrame {
     private JPanel panelMain;
-    private JTextField countryTextField;
-    private JButton zButton;
-    private Country country;
-    private Date rankingDate;
+    private JTable resultTable;
+    private JLabel resultLabel;
     DBHandler db = DBHandler.getInstance();
 
     private static List<RankPlayer> rankPlayers = new ArrayList<>();
 
+    private void createTable() {
+        DefaultTableModel model = new DefaultTableModel(
+                null,
+                new String[]{"Name", "Rank", "Points"}
+        );
 
-    private void fillPlayersList() {
-        DefaultListModel dlm = new DefaultListModel();
+        resultTable.setModel(model);
+
         for (RankPlayer rankPlayer : rankPlayers) {
-            dlm.addElement(rankPlayer.toString());
+            Object[] row = {rankPlayer.getFullName(), rankPlayer.getRank(), rankPlayer.getPoints()};
+            model.addRow(row);
         }
-        playersList.setModel(dlm);
-        playersList.addListSelectionListener(this);
+
+        TableColumnModel columns = resultTable.getColumnModel();
+        columns.getColumn(0).setMinWidth(200);
+        columns.getColumn(1).setMinWidth(50);
+        columns.getColumn(2).setMinWidth(50);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        columns.getColumn(1).setCellRenderer(centerRenderer);
+        columns.getColumn(2).setCellRenderer(centerRenderer);
+
+        resultTable.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table = (JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    int id = rankPlayers.get(row).getPlayerId();
+                    new DetailsWindow(id);
+                }
+            }
+        });
     }
 
-
     PlayersWindow(Country country, Date date) {
-        rankingDate = date;
-        countryTextField.setText(country.getCountryName());
-
         setContentPane(panelMain);
         setTitle("Winbeldon");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -46,22 +69,12 @@ public class PlayersWindow extends JFrame implements ListSelectionListener {
         setVisible(true);
 
         rankPlayers = db.getPlayersByCountryAndDate(country.getCountryCode(), date);
-        fillPlayersList();
-        playersList.setVisible(true);
+        setTableTitle(country.getCountryName());
+        createTable();
     }
 
-
-    @Override
-    public void valueChanged(ListSelectionEvent e) {
-        int returns = playersList.getSelectedIndex();
-        if (!e.getValueIsAdjusting()) {
-            int id = rankPlayers.get(returns).getPlayerId();
-            new DetailsWindow(rankPlayers.get(returns).getPlayerId());
-            //System.out.println(rankPlayers.get(returns));
-        } else {
-
-        }
+    private void setTableTitle(String countryName) {
+        resultLabel.setText(countryName + " Result");
     }
-
 }
 

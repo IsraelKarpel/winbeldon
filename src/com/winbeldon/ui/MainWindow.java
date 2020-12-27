@@ -31,13 +31,10 @@ public class MainWindow extends JFrame {
         fillCountries();
         fillRankingDates();
 
-        pressMeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Country selectedCountry = getSelectedCountry();
-                Date selectedRankingDate = getSelectedDate();
-                new PlayersWindow(selectedCountry, selectedRankingDate);
-            }
+        pressMeButton.addActionListener(e -> {
+            Country selectedCountry = getSelectedCountry();
+            Date selectedRankingDate = getSelectedDate();
+            new PlayersWindow(selectedCountry, selectedRankingDate);
         });
     }
 
