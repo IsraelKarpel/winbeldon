@@ -95,6 +95,8 @@ public class DBHandler {
      * Shows executeQuery
      */
     public List<Country> getCountriesList() {
+        long start = System.currentTimeMillis();
+
         System.out.print("Getting countries from DB... ");
 
         String QUERY = "SELECT *" +
@@ -111,6 +113,10 @@ public class DBHandler {
                 countries.add(c);
             }
             System.out.println("Done!");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getCountriesList: " + timeElapsed);
+
             return countries;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -122,6 +128,8 @@ public class DBHandler {
     }
 
     public List<Date> getRankingDatesList() {
+        long start = System.currentTimeMillis();
+
         System.out.print("Getting ranking dates from DB... ");
         String QUERY = "SELECT DISTINCT rank_date" +
                 " FROM winbeldon.rankings" +
@@ -135,6 +143,10 @@ public class DBHandler {
                 rankingDates.add(date);
             }
             System.out.println("Done!");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getRankingDatesList: " + timeElapsed);
+
             return rankingDates;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -146,6 +158,8 @@ public class DBHandler {
     }
 
     public List<RankPlayer> getPlayersByCountryAndDate(String countryCode, Date rankingDate) {
+        long start = System.currentTimeMillis();
+
         System.out.println("Getting players by country from DB... ");
         String QUERY = "SELECT players.player_id, first_name, last_name, rankings.player_rank, points" +
                 " FROM winbeldon.players, winbeldon.rankings" +
@@ -167,6 +181,10 @@ public class DBHandler {
                 rankPlayerList.add(player);
             }
             System.out.println("Done!");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getPlayersByCountryAndDate: " + timeElapsed);
+
             return rankPlayerList;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -178,6 +196,8 @@ public class DBHandler {
     }
 
     public Player getPlayerById(int id) {
+        long start = System.currentTimeMillis();
+
         String QUERY = "SELECT *" +
                 " FROM winbeldon.players" +
                 " WHERE '" + id + "' = player_id";
@@ -191,6 +211,10 @@ public class DBHandler {
                     rs.getDate(BIRTH_DATE),
                     rs.getString(COUNTRY_CODE));
 
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getPlayerById: " + timeElapsed);
+
             return player;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -202,6 +226,8 @@ public class DBHandler {
     }
 
     public int getSinglesTotalMatchesWinsByPlayerId(int id) {
+        long start = System.currentTimeMillis();
+
         String QUERY_TOTAL_WINS = "SELECT COUNT(*) AS total_wins" +
                 " FROM winbeldon.matches_singles" +
                 " WHERE winner_id = " + id;
@@ -209,6 +235,10 @@ public class DBHandler {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_WINS)) {
             rs.next();
             int total_wins = rs.getInt("total_wins");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getSinglesTotalMatchesWinsByPlayerId: " + timeElapsed);
+
             return total_wins;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -220,6 +250,8 @@ public class DBHandler {
     }
 
     public int getSinglesTotalFinalsMatchesWinsByPlayerId(int id) {
+        long start = System.currentTimeMillis();
+
         String QUERY_TOTAL_FINALS_WINS = "SELECT COUNT(*) AS total_finals_wins" +
                 " FROM winbeldon.matches_singles" +
                 " WHERE winner_id = " + id +
@@ -228,6 +260,10 @@ public class DBHandler {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_FINALS_WINS)) {
             rs.next();
             int total_wins = rs.getInt("total_finals_wins");
+
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getSinglesTotalFinalsMatchesWinsByPlayerId: " + timeElapsed);
             return total_wins;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -239,6 +275,8 @@ public class DBHandler {
     }
 
     public int getDoublesTotalMatchesWinsByPlayerId(int id) {
+        long start = System.currentTimeMillis();
+
         String QUERY_TOTAL_WINS = "SELECT COUNT(*) AS total_wins" +
                 " FROM winbeldon.matches_doubles" +
                 " WHERE winner1_id = " + id + " OR winner2_id = " + id;
@@ -246,6 +284,10 @@ public class DBHandler {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_WINS)) {
             rs.next();
             int total_wins = rs.getInt("total_wins");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getDoublesTotalMatchesWinsByPlayerId: " + timeElapsed);
+
             return total_wins;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -257,6 +299,8 @@ public class DBHandler {
     }
 
     public int getDoublesTotalFinalsMatchesWinsByPlayerId(int id) {
+        long start = System.currentTimeMillis();
+
         String QUERY_TOTAL_FINALS_WINS = "SELECT COUNT(*) AS total_finals_wins" +
                 " FROM winbeldon.matches_doubles" +
                 " WHERE (winner1_id = " + id + " OR winner2_id = " + id + ")" +
@@ -265,6 +309,10 @@ public class DBHandler {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_FINALS_WINS)) {
             rs.next();
             int total_wins = rs.getInt("total_finals_wins");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getDoublesTotalFinalsMatchesWinsByPlayerId: " + timeElapsed);
+
             return total_wins;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -276,12 +324,18 @@ public class DBHandler {
     }
 
     public int getPlayerBestRankByPlayerId(int id) {
+        long start = System.currentTimeMillis();
+
         String QUERY_BEST_RANK = "SELECT MIN(player_rank) " +
                 "FROM winbeldon.rankings " +
                 "WHERE player_id = " + id;
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_BEST_RANK)) {
             rs.next();
             int rank = rs.getInt("MIN(player_rank)");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getPlayerBestRankByPlayerId: " + timeElapsed);
+
             return rank;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
@@ -293,6 +347,8 @@ public class DBHandler {
     }
 
     public Date getDateOfBestRankByPlayerId(int id) {
+        long start = System.currentTimeMillis();
+
         String QUERY_DATE_OF_BEST_RANK = "SELECT rank_date" +
                 " FROM winbeldon.rankings " +
                 "WHERE player_id=" + id + " AND player_rank = (SELECT MIN(player_rank)" +
@@ -300,6 +356,10 @@ public class DBHandler {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
             rs.next();
             Date date = rs.getDate("rank_date");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getDateOfBestRankByPlayerId: " + timeElapsed);
+
             return date;
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
