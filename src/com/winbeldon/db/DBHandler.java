@@ -1,10 +1,12 @@
 package com.winbeldon.db;
 
+import com.mysql.cj.conf.ConnectionUrlParser;
 import com.winbeldon.model.Country;
 import com.winbeldon.model.Player;
 import com.winbeldon.model.RankPlayer;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 
 import java.io.FileReader;
 import java.sql.*;
@@ -16,13 +18,13 @@ import static com.winbeldon.Constants.*;
 
 // TODO 14/12/2020: make it singleton!
 public class DBHandler {
-    Connection conn; // DB connection
+    private final static DBHandler INSTANCE = new DBHandler();
     final String HOST_KEY = "host";
     final String PORT_KEY = "port";
     final String SCHEMA_KEY = "schema";
     final String USER_KEY = "user";
     final String PASSWORD_KEY = "password";
-    private final static DBHandler INSTANCE = new DBHandler();
+    Connection conn; // DB connection
 
 
     private DBHandler() {
@@ -225,6 +227,41 @@ public class DBHandler {
         }
     }
 
+    public List<Player> getAllPlayersList() {
+        long start = System.currentTimeMillis();
+        System.out.println("Getting all players DB... ");
+
+        String QUERY = "SELECT * FROM winbeldon.players ORDER BY first_name, last_name";
+        List<Player> playerList = new ArrayList<>();
+
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
+            while (rs.next()) {
+                Player player = new Player(
+                        rs.getInt(PLAYER_ID),
+                        rs.getString(FIRST_NAME),
+                        rs.getString(LAST_NAME),
+                        rs.getString(HAND),
+                        null,
+                        rs.getString(COUNTRY_CODE));
+                playerList.add(player);
+
+            }
+            System.out.println("Done!");
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getAllPlayersList: " + timeElapsed);
+
+            return playerList;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return null;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return null;
+        }
+
+    }
+
     public int getSinglesTotalMatchesWinsByPlayerId(int id) {
         long start = System.currentTimeMillis();
 
@@ -361,6 +398,31 @@ public class DBHandler {
             System.out.println("getDateOfBestRankByPlayerId: " + timeElapsed);
 
             return date;
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return null;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return null;
+        }
+    }
+
+    public List<ConnectionUrlParser.Pair<Date,Double>> getPlayerDatePointsList(int playerID){
+        long start = System.currentTimeMillis();
+        List<ConnectionUrlParser.Pair<Date,Double>>playerDateScoreList = new ArrayList<>();
+
+        String QUERY_DATE_OF_BEST_RANK = "SELECT rankings.rank_date, rankings.points FROM winbeldon.rankings " + "" +
+                "WHERE rankings.player_id=" + playerID + " ORDER BY rankings.rank_date;";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
+            while (rs.next()) {
+                playerDateScoreList.add(new ConnectionUrlParser.Pair<>(rs.getDate(RANK_DATE),rs.getDouble(POINTS)));
+            }
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getPlayerDatePointsList: " + timeElapsed);
+
+            return playerDateScoreList;
+
         } catch (SQLException e) {
             System.out.println("ERROR executeQuery - " + e.getMessage());
             return null;
