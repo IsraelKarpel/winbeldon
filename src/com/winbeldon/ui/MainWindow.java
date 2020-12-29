@@ -1,6 +1,7 @@
 package com.winbeldon.ui;
 
 
+import com.winbeldon.BestPlayerEachCountry;
 import com.winbeldon.db.DBHandler;
 import com.winbeldon.model.Country;
 import com.winbeldon.model.Player;
@@ -24,6 +25,7 @@ public class MainWindow extends JFrame {
     private JButton compareButton;
     private JComboBox player3comboBox;
     private JComboBox player4comboBox;
+    private JButton bestEachCountryButton;
 
     private MainWindow() {
         setContentPane(panelMain);
@@ -48,6 +50,7 @@ public class MainWindow extends JFrame {
             Player player4 = getSelectedPlayer(4);
             new ComparePlayersWindow(player1, player2, player3, player4);
         });
+        bestEachCountryButton.addActionListener(e -> new BestPlayerEachCountry());
     }
 
     private Country getSelectedCountry() {

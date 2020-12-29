@@ -431,4 +431,62 @@ public class DBHandler {
             return null;
         }
     }
+
+    public List<RankPlayer> getAllBestPlayers(){
+        long start = System.currentTimeMillis();
+        List<RankPlayer>players = new ArrayList<>();
+
+        String QUERY_DATE_OF_BEST_RANK = "SELECT player_id, first_name, last_name, a.country_code, a.points\n" +
+                "FROM (SELECT players.player_id, first_name, last_name, country_code, MAX(points) points\n" +
+                "      FROM rankings,\n" +
+                "           players\n" +
+                "      WHERE players.player_id = rankings.player_id\n" +
+                "      GROUP BY player_id\n" +
+                "     ) a\n" +
+                "         JOIN (SELECT country_code, MAX(points) points\n" +
+                "               FROM rankings,\n" +
+                "                    players\n" +
+                "               WHERE players.player_id = rankings.player_id\n" +
+                "               GROUP BY country_code\n" +
+                ") b ON (a.country_code = b.country_code AND a.points = b.points)\n" +
+                "ORDER BY a.points DESC";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
+            while (rs.next()) {
+                RankPlayer player = new RankPlayer(rs.getInt(PLAYER_ID),rs.getString(FIRST_NAME),
+                        rs.getString(LAST_NAME), 0,rs.getInt(POINTS));
+                players.add(player);
+            }
+            long finish = System.currentTimeMillis();
+            long timeElapsed = finish - start;
+            System.out.println("getAllBestPlayers: " + timeElapsed);
+
+            return players;
+
+        } catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return null;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return null;
+        }
+    }
+
+    public String getCountryNameByPlayerID(int playerID){
+        long start = System.currentTimeMillis();
+
+        String QUERY = "SELECT country_name FROM winbeldon.countries, Players \n" +
+                "WHERE countries.country_code = players.country_code AND\n" +
+                "players.player_id = " + playerID;
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
+            rs.next();
+            return rs.getString(COUNTRY_NAME);
+        }  catch (SQLException e) {
+            System.out.println("ERROR executeQuery - " + e.getMessage());
+            return null;
+        } catch (NullPointerException e) {
+            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            return null;
+        }
+
+    }
 }
