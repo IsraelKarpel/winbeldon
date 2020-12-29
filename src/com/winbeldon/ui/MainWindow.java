@@ -68,22 +68,34 @@ public class MainWindow extends JFrame {
             return null;
         }
     }
-    private Player getSelectedPlayer(int num){
-        try{
-            if (num == 1){
-                return players.get(player1comboBox.getSelectedIndex());
-            } else if (num == 2){
-                return players.get(player2comboBox.getSelectedIndex());
-            } else if (num == 3){
-                return players.get(player3comboBox.getSelectedIndex());
-            } else if (num == 4){
-                return players.get(player4comboBox.getSelectedIndex());
+
+    private Player getSelectedPlayer(int num) {
+        try {
+            int index = 0;
+            if (num == 1) {
+                index = player1comboBox.getSelectedIndex();
+                if (index == 0)
+                    return null;
+            } else if (num == 2) {
+                index = player2comboBox.getSelectedIndex();
+                if (index == 0)
+                    return null;
+            } else if (num == 3) {
+                index = player3comboBox.getSelectedIndex();
+                if (index == 0)
+                    return null;
+            } else if (num == 4) {
+                index = player4comboBox.getSelectedIndex();
+                if (index == 0)
+                    return null;
             }
-        }catch (NullPointerException e){
+
+            return players.get(index - 1);
+
+        } catch (NullPointerException e) {
             System.out.println("ERROR - You have not chosen any Player - " + e.getMessage());
             return null;
         }
-        return null;
     }
 
     public static void main(String[] args) {
@@ -113,18 +125,17 @@ public class MainWindow extends JFrame {
         }
     }
 
-    private void fillPlayers(){
-        player1comboBox.setVisible(true);
-        player2comboBox.setVisible(true);
-        player3comboBox.setVisible(true);
-        player4comboBox.setVisible(true);
-        for (Player p: players){
+    private void fillPlayers() {
+        player1comboBox.addItem("");
+        player2comboBox.addItem("");
+        player3comboBox.addItem("");
+        player4comboBox.addItem("");
+
+        for (Player p : players) {
             player1comboBox.addItem(p.getFullName());
             player2comboBox.addItem(p.getFullName());
             player3comboBox.addItem(p.getFullName());
             player4comboBox.addItem(p.getFullName());
         }
     }
-
-
 }

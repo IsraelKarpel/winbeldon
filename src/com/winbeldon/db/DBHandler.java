@@ -7,7 +7,6 @@ import com.winbeldon.model.RankPlayer;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-
 import java.io.FileReader;
 import java.sql.*;
 import java.util.ArrayList;
@@ -407,15 +406,15 @@ public class DBHandler {
         }
     }
 
-    public List<ConnectionUrlParser.Pair<Date,Double>> getPlayerDatePointsList(int playerID){
+    public List<ConnectionUrlParser.Pair<Date, Double>> getPlayerDatePointsList(int playerID) {
         long start = System.currentTimeMillis();
-        List<ConnectionUrlParser.Pair<Date,Double>>playerDateScoreList = new ArrayList<>();
+        List<ConnectionUrlParser.Pair<Date, Double>> playerDateScoreList = new ArrayList<>();
 
-        String QUERY_DATE_OF_BEST_RANK = "SELECT rankings.rank_date, rankings.points FROM winbeldon.rankings " + "" +
+        String QUERY_DATE_OF_BEST_RANK = "SELECT rankings.rank_date, rankings.points FROM winbeldon.rankings " +
                 "WHERE rankings.player_id=" + playerID + " ORDER BY rankings.rank_date;";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
             while (rs.next()) {
-                playerDateScoreList.add(new ConnectionUrlParser.Pair<>(rs.getDate(RANK_DATE),rs.getDouble(POINTS)));
+                playerDateScoreList.add(new ConnectionUrlParser.Pair<>(rs.getDate(RANK_DATE), rs.getDouble(POINTS)));
             }
             long finish = System.currentTimeMillis();
             long timeElapsed = finish - start;
@@ -432,28 +431,26 @@ public class DBHandler {
         }
     }
 
-    public List<RankPlayer> getAllBestPlayers(){
+    public List<RankPlayer> getAllBestPlayers() {
         long start = System.currentTimeMillis();
-        List<RankPlayer>players = new ArrayList<>();
+        List<RankPlayer> players = new ArrayList<>();
 
-        String QUERY_DATE_OF_BEST_RANK = "SELECT player_id, first_name, last_name, a.country_code, a.points\n" +
-                "FROM (SELECT players.player_id, first_name, last_name, country_code, MAX(points) points\n" +
-                "      FROM rankings,\n" +
-                "           players\n" +
-                "      WHERE players.player_id = rankings.player_id\n" +
-                "      GROUP BY player_id\n" +
-                "     ) a\n" +
-                "         JOIN (SELECT country_code, MAX(points) points\n" +
-                "               FROM rankings,\n" +
-                "                    players\n" +
-                "               WHERE players.player_id = rankings.player_id\n" +
-                "               GROUP BY country_code\n" +
-                ") b ON (a.country_code = b.country_code AND a.points = b.points)\n" +
+        String QUERY_DATE_OF_BEST_RANK = "SELECT player_id, first_name, last_name, a.country_code, a.points " +
+                "FROM (SELECT players.player_id, first_name, last_name, country_code, MAX(points) points" +
+                "      FROM rankings, players" +
+                "      WHERE players.player_id = rankings.player_id" +
+                "      GROUP BY player_id" +
+                "     ) a" +
+                "         JOIN (SELECT country_code, MAX(points) points" +
+                "               FROM rankings, players" +
+                "               WHERE players.player_id = rankings.player_id" +
+                "               GROUP BY country_code" +
+                ") b ON (a.country_code = b.country_code AND a.points = b.points)" +
                 "ORDER BY a.points DESC";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
             while (rs.next()) {
-                RankPlayer player = new RankPlayer(rs.getInt(PLAYER_ID),rs.getString(FIRST_NAME),
-                        rs.getString(LAST_NAME), 0,rs.getInt(POINTS));
+                RankPlayer player = new RankPlayer(rs.getInt(PLAYER_ID), rs.getString(FIRST_NAME),
+                        rs.getString(LAST_NAME), 0, rs.getInt(POINTS));
                 players.add(player);
             }
             long finish = System.currentTimeMillis();
@@ -471,7 +468,7 @@ public class DBHandler {
         }
     }
 
-    public String getCountryNameByPlayerID(int playerID){
+    public String getCountryNameByPlayerID(int playerID) {
         long start = System.currentTimeMillis();
 
         String QUERY = "SELECT country_name FROM winbeldon.countries, Players \n" +
@@ -480,8 +477,8 @@ public class DBHandler {
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
             rs.next();
             return rs.getString(COUNTRY_NAME);
-        }  catch (SQLException e) {
-            System.out.println("getCountryNameByPlayerID: ERROR executeQuery - " + e.getMessage() + " ["+playerID+"]");
+        } catch (SQLException e) {
+            System.out.println("getCountryNameByPlayerID: ERROR executeQuery - " + e.getMessage() + " [" + playerID + "]");
             return null;
         } catch (NullPointerException e) {
             System.out.println(("getCountryNameByPlayerID: ERROR NullPointerException - " + e.getMessage()));

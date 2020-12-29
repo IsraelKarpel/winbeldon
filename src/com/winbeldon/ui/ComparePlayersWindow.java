@@ -1,11 +1,12 @@
 package com.winbeldon.ui;
 
 import com.mysql.cj.conf.ConnectionUrlParser;
+import com.winbeldon.db.DBHandler;
+import com.winbeldon.model.Player;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.block.BlockBorder;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
@@ -13,24 +14,9 @@ import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
-
-import com.winbeldon.db.DBHandler;
-import com.winbeldon.model.Country;
-import com.winbeldon.model.Player;
-import org.jfree.data.xy.XYDataset;
 
 import javax.swing.*;
-import java.security.PrivateKey;
-import java.util.Calendar;
+import java.awt.*;
 import java.util.Date;
 import java.util.List;
 
@@ -77,32 +63,41 @@ public class ComparePlayersWindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    private TimeSeries buildTimeSeries(Player player, List<ConnectionUrlParser.Pair<Date, Double>> list){
+    private TimeSeries buildTimeSeries(Player player, List<ConnectionUrlParser.Pair<Date, Double>> list) {
         TimeSeries series = new TimeSeries(player.getFullName());
         for (ConnectionUrlParser.Pair p : list) {
-            series.add(new Day((Date)p.left), (Double) p.right);
+            series.add(new Day((Date) p.left), (Double) p.right);
         }
         return series;
     }
 
     private XYDataset createDataset() {
-        player1List = db.getPlayerDatePointsList(player1.getPlayerId());
-        player2List = db.getPlayerDatePointsList(player2.getPlayerId());
-        player3List = db.getPlayerDatePointsList(player3.getPlayerId());
-        player4List = db.getPlayerDatePointsList(player4.getPlayerId());
-
-        TimeSeries series1 = buildTimeSeries(player1, player1List);
-        TimeSeries series2 = buildTimeSeries(player2, player2List);
-        TimeSeries series3 = buildTimeSeries(player3, player3List);
-        TimeSeries series4 = buildTimeSeries(player4, player4List);
-
-
-
         TimeSeriesCollection dataset = new TimeSeriesCollection();
-        dataset.addSeries(series1);
-        dataset.addSeries(series2);
-        dataset.addSeries(series3);
-        dataset.addSeries(series4);
+
+        if (player1 != null) {
+            player1List = db.getPlayerDatePointsList(player1.getPlayerId());
+            TimeSeries series1 = buildTimeSeries(player1, player1List);
+            dataset.addSeries(series1);
+        }
+
+        if (player2 != null) {
+            player2List = db.getPlayerDatePointsList(player2.getPlayerId());
+            TimeSeries series2 = buildTimeSeries(player2, player2List);
+            dataset.addSeries(series2);
+        }
+
+        if (player3 != null) {
+            player3List = db.getPlayerDatePointsList(player3.getPlayerId());
+            TimeSeries series3 = buildTimeSeries(player3, player3List);
+            dataset.addSeries(series3);
+
+        }
+
+        if (player4 != null){
+            player4List = db.getPlayerDatePointsList(player4.getPlayerId());
+            TimeSeries series4 = buildTimeSeries(player4, player4List);
+            dataset.addSeries(series4);
+        }
 
         return dataset;
     }
