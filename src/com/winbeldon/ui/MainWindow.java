@@ -1,11 +1,9 @@
 package com.winbeldon.ui;
 
 
-import com.winbeldon.BestPlayerEachCountry;
 import com.winbeldon.db.DBHandler;
 import com.winbeldon.model.Country;
 import com.winbeldon.model.Player;
-import com.winbeldon.model.RankPlayer;
 
 import javax.swing.*;
 import java.util.ArrayList;

@@ -463,10 +463,10 @@ public class DBHandler {
             return players;
 
         } catch (SQLException e) {
-            System.out.println("ERROR executeQuery - " + e.getMessage());
+            System.out.println("getAllBestPlayers: ERROR executeQuery - " + e.getMessage());
             return null;
         } catch (NullPointerException e) {
-            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            System.out.println(("getAllBestPlayers: ERROR NullPointerException - " + e.getMessage()));
             return null;
         }
     }
@@ -481,10 +481,10 @@ public class DBHandler {
             rs.next();
             return rs.getString(COUNTRY_NAME);
         }  catch (SQLException e) {
-            System.out.println("ERROR executeQuery - " + e.getMessage());
+            System.out.println("getCountryNameByPlayerID: ERROR executeQuery - " + e.getMessage());
             return null;
         } catch (NullPointerException e) {
-            System.out.println(("ERROR NullPointerException - " + e.getMessage()));
+            System.out.println(("getCountryNameByPlayerID: ERROR NullPointerException - " + e.getMessage()));
             return null;
         }
 

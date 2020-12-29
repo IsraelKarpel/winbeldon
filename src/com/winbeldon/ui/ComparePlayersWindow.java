@@ -122,7 +122,7 @@ public class ComparePlayersWindow extends JFrame {
 
         XYPlot plot = chart.getXYPlot();
 
-        var renderer = new XYLineAndShapeRenderer();
+        XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
 
         renderer.setSeriesPaint(0, Color.RED);
         renderer.setSeriesStroke(0, new BasicStroke(2.0f));
