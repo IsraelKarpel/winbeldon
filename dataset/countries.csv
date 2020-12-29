@@ -1,85 +1,90 @@
-Short name,ISO3
 Afghanistan,AFG
 Albania,ALB
-Algeria,DZA
+Algeria,ALG
+American Samoa*,ASA
 Andorra,AND
-Angola,AGO
-Antigua and Barbuda,ATG
+Angola,ANG
+Antigua and Barbuda,ANT
 Argentina,ARG
 Armenia,ARM
+Aruba*,ARU
 Australia,AUS
 Austria,AUT
 Azerbaijan,AZE
-Bahamas,BHS
-Bahrain,BHR
-Bangladesh,BGD
-Barbados,BRB
+Bahamas,BAH
+Bahrain,BRN
+Bangladesh,BAN
+Barbados,BAR
 Belarus,BLR
 Belgium,BEL
-Belize,BLZ
+Belize,BIZ
+Bermuda*,BER
 Benin,BEN
-Bhutan,BTN
-Bolivia (Plurinational State of),BOL
+Bhutan,BHU
+Bolivia,BOL
 Bosnia and Herzegovina,BIH
-Botswana,BWA
+Botswana,BOT
 Brazil,BRA
-Brunei Darussalam,BRN
-Bulgaria,BGR
-Burkina Faso,BFA
+British Virgin Islands,IVB
+Brunei,BRU
+Bulgaria,BUL
+Burkina Faso,BUR
 Burundi,BDI
-Cabo Verde,CPV
-Cambodia,KHM
+Cambodia,CAM
 Cameroon,CMR
 Canada,CAN
+Cape Verde,CPV
+Cayman Islands*,CAY
 Central African Republic,CAF
-Chad,TCD
-Chile,CHL
+Chad,CHA
+Chile,CHI
 China,CHN
 Colombia,COL
 Comoros,COM
-Congo,COG
+Congo,CGO
 Cook Islands,COK
-Costa Rica,CRI
-Croatia,HRV
+Costa Rica,CRC
+Cote d'Ivoire,CIV
+Croatia,CRO
 Cuba,CUB
 Cyprus,CYP
-Czechia,CZE
-Côte d'Ivoire,CIV
-Democratic People's Republic of Korea,PRK
-Democratic Republic of the Congo,COD
-Denmark,DNK
+Czech Republic,CZE
+Czechoslovakia,CHE
+Denmark,DEN
 Djibouti,DJI
 Dominica,DMA
 Dominican Republic,DOM
+East Timor (Timor-Leste),TLS
 Ecuador,ECU
 Egypt,EGY
-El Salvador,SLV
-Equatorial Guinea,GNQ
+El Salvador,ESA
+Equatorial Guinea,GEQ
 Eritrea,ERI
 Estonia,EST
 Ethiopia,ETH
-Faroe Islands (Associate Member),FRO
-Fiji,FJI
+Fiji,FIJ
 Finland,FIN
 France,FRA
 Gabon,GAB
-Gambia,GMB
+Gambia,GAM
 Georgia,GEO
-Germany,DEU
+Germany,GER
 Ghana,GHA
-Greece,GRC
-Grenada,GRD
-Guatemala,GTM
-Guinea,GIN
-Guinea-Bissau,GNB
+Greece,GRE
+Grenada,GRN
+Guam,GUM
+Guatemala,GUA
+Guinea,GUI
+Guinea-Bissau,GBS
 Guyana,GUY
-Haiti,HTI
-Honduras,HND
+Haiti,HAI
+Honduras,HON
+Hong Kong*,HKG
 Hungary,HUN
 Iceland,ISL
 India,IND
-Indonesia,IDN
-Iran (Islamic Republic of),IRN
+Indonesia,INA
+Iran,IRI
 Iraq,IRQ
 Ireland,IRL
 Israel,ISR
@@ -89,109 +94,109 @@ Japan,JPN
 Jordan,JOR
 Kazakhstan,KAZ
 Kenya,KEN
-Kiribati,KIR
-Kuwait,KWT
+Kuwait,KUW
 Kyrgyzstan,KGZ
-Lao People's Democratic Republic,LAO
-Latvia,LVA
-Lebanon,LBN
-Lesotho,LSO
+Laos,LAO
+Latvia,LAT
+Lebanon,LIB
+Lesotho,LES
 Liberia,LBR
-Libya,LBY
+Libya,LBA
+Liechtenstein,LIE
 Lithuania,LTU
 Luxembourg,LUX
-Madagascar,MDG
-Malawi,MWI
-Malaysia,MYS
+Macedonia,MKD
+Madagascar,MAD
+Malawi,MAW
+Malaysia,MAS
 Maldives,MDV
 Mali,MLI
 Malta,MLT
-Marshall Islands,MHL
-Mauritania,MRT
-Mauritius,MUS
+Mauritania,MTN
+Mauritius,MRI
 Mexico,MEX
-Micronesia (Federated States of),FSM
-Monaco,MCO
-Mongolia,MNG
+Micronesia,FSM
+Moldova,MDA
+Monaco,MON
+Mongolia,MGL
 Montenegro,MNE
+Democratic Republic of the Congo,COD
 Morocco,MAR
 Mozambique,MOZ
-Myanmar,MMR
+Burma,MYA
 Namibia,NAM
 Nauru,NRU
-Nepal,NPL
-Netherlands,NLD
+Nepal,NEP
+Netherlands,NED
+Netherlands Antilles*,AHO
 New Zealand,NZL
-Nicaragua,NIC
-Niger,NER
-Nigeria,NGA
-Niue,NIU
+Nicaragua,NCA
+Niger,NIG
+Nigeria,NGR
 Norway,NOR
-Oman,OMN
+Oman,OMA
 Pakistan,PAK
 Palau,PLW
 Panama,PAN
 Papua New Guinea,PNG
-Paraguay,PRY
+Paraguay,PAR
 Peru,PER
-Philippines,PHL
+Philippines,PHI
 Poland,POL
-Portugal,PRT
+Portugal,POR
+Puerto Rico*,PUR
 Qatar,QAT
-Republic of Korea,KOR
-Republic of Moldova,MDA
 Romania,ROU
-Russian Federation,RUS
+Russia,RUS
 Rwanda,RWA
-Saint Kitts and Nevis,KNA
+Saint Kitts and Nevis,SKN
 Saint Lucia,LCA
-Saint Vincent and the Grenadines,VCT
-Samoa,WSM
+Saint Vincent and the Grenadines,VIN
+Samoa,SAM
 San Marino,SMR
 Sao Tome and Principe,STP
-Saudi Arabia,SAU
+Saudi Arabia,KSA
 Senegal,SEN
 Serbia,SRB
-Seychelles,SYC
+Seychelles,SEY
 Sierra Leone,SLE
-Singapore,SGP
+Singapore,SIN
 Slovakia,SVK
-Slovenia,SVN
-Solomon Islands,SLB
+Slovenia,SLO
+Solomon Islands,SOL
 Somalia,SOM
-South Africa,ZAF
-South Sudan,SSD
+South Africa,RSA
+South Korea,KOR
 Spain,ESP
-Sri Lanka,LKA
-Sudan,SDN
+Sri Lanka,SRI
+Sudan,SUD
 Suriname,SUR
 Swaziland,SWZ
 Sweden,SWE
 Switzerland,SUI
-Syrian Arab Republic,SYR
+Syria,SYR
+Taiwan,TPE
 Tajikistan,TJK
+Tanzania,TAN
 Thailand,THA
-The former Yugoslav Republic of Macedonia,MKD
-Timor-Leste,TLS
-Togo,TGO
-Tokelau (Associate Member),TKL
-Tonga,TON
-Trinidad and Tobago,TTO
+Togo,TOG
+Tonga,TGA
+Trinidad and Tobago,TRI
 Tunisia,TUN
 Turkey,TUR
 Turkmenistan,TKM
-Tuvalu,TUV
 Uganda,UGA
 Ukraine,UKR
-United Arab Emirates,ARE
+United Arab Emirates,UAE
 United Kingdom,GBR
-United Republic of Tanzania,TZA
-United States of America,USA
-Uruguay,URY
+United States,USA
+Uruguay,URU
 Uzbekistan,UZB
-Vanuatu,VUT
-Venezuela (Bolivarian Republic of),VEN
-Viet Nam,VNM
+Vanuatu,VAN
+Venezuela,VEN
+Vietnam,VIE
+Virgin Islands*,ISV
 Yemen,YEM
-Zambia,ZMB
-Zimbabwe,ZWE
+Yugoslavia,YUG
+Zambia,ZAM
+Zimbabwe,ZIM

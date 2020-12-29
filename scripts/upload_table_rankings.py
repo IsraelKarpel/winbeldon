@@ -1,6 +1,7 @@
 # import the connector from the mysql module that we downloaded
-import mysql.connector
 import time
+
+import mysql.connector
 
 # create a connection to the database()
 db = mysql.connector.connect(
@@ -55,8 +56,12 @@ for row in rows:
 
 db.commit()
 
-SQL_INDEX = 'CREATE INDEX rankings_rank_date_player_rank_index ON rankings (rank_date, player_rank);'
-cursor.execute(SQL_INDEX)
+SQL_INDEX1 = 'CREATE INDEX rankings_rank_date_player_rank_index ON rankings (rank_date, player_rank);'
+SQL_INDEX2 = 'CREATE INDEX rankings_player_id_points_index ON rankings (player_id ASC, points DESC);'
+cursor.execute(SQL_INDEX1)
+cursor.execute(SQL_INDEX2)
+
+db.commit()
 
 end = time.time()
 print("done uploading table to DB: %.0f sec" % (end - start))

@@ -10798,8 +10798,8 @@ player_id,first_name,last_name,hand,birth_date,country_code
 110811,Carlos Roberto,Paez,U,19720621,CRC
 110812,Alexander,Schad,U,19710318,DOM
 110813,Rafael,Moreno,U,19600716,DOM
-110814,Gavaskar,Williams,U,19711026,ECA
-110815,Vernon,Lewis,U,19651030,ECA
+110814,Gavaskar,Williams,U,19711026,ANT
+110815,Vernon,Lewis,U,19651030,ANT
 110816,Valerio,Boccito,U,19660115,VEN
 110817,Ifthekar,Sardar,U,19621010,BAN
 110818,Shovon,Jamaly,U,19680118,BAN
@@ -10892,7 +10892,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 110905,Fred,Kangwa,U,19621116,ZAM
 110906,Luc,Ondobo,U,19721110,CMR
 110907,Pierre,Moudourou,U,19710615,CMR
-110908,Jerry,Williams,U,19620929,ECA
+110908,Jerry,Williams,U,19620929,ANT
 110909,Fabio,Sical,U,19590427,GUA
 110910,Ismail,Sauce,U,19511106,VEN
 110911,Kenneth Thome,Bolanos,R,19681101,CRC
@@ -21717,7 +21717,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 121731,Justin,Dugan,U,19900120,GUM
 121732,Samuel,Holland Smith,U,19901114,AUS
 121733,Franklin,Sherrill,U,19841003,USA
-121734,Ji Hoon,Heo,R,19920213,NMI
+121734,Ji Hoon,Heo,R,19920213,GUM
 121735,Rogelio,Gomez,U,19940928,MEX
 121736,Kevin,Prando,R,19920206,ARG
 121737,Maurice,Van Alem,U,19900414,NED
@@ -26836,7 +26836,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 126850,Patrik,Jovanovic,U,19950408,BIH
 126851,Faris,Zukic,U,19940228,BIH
 126852,Emir,Skejovic,U,19950916,BIH
-126853,Jean Baptiste,Vivies,U,19950207,GUD
+126853,Jean Baptiste,Vivies,U,19950207,FRA
 126854,Tristan,Meraut,R,19951227,FRA
 126855,Jorge,Aramburo,U,,MEX
 126856,Diego Omar,Nunez Felix,R,19950324,MEX
@@ -31542,7 +31542,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 131556,Dominique,Simonet,U,19670206,FRA
 131557,Ludovic,Ulrici,U,19660401,FRA
 131558,Wladimir,Frizel,U,19740610,FRA
-131559,Emmanuel Paul,Brard,U,19681206,REU
+131559,Emmanuel Paul,Brard,U,19681206,FRA
 131560,Jerome,Dumazer,U,19631106,FRA
 131561,Patrick,Buissiere,U,19630707,FRA
 131562,Frederic,Horrau,U,19760508,FRA
@@ -37169,7 +37169,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 137183,Adit,Jain,U,19910922,IND
 137184,Alexander,Ornbo,U,19950104,GUM
 137185,Emil Christian,Penafiel,R,19950630,GUM
-137186,Cesar,Testoni,U,19951004,REU
+137186,Cesar,Testoni,U,19951004,FRA
 137187,Batiekoro,Keita,R,19871225,MLI
 137188,Jocelyn,Devilliers,R,19941218,FRA
 137189,Marco,Castellani,U,19930505,ITA
@@ -39582,7 +39582,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 139596,Jonathon,Osteen,U,19811116,USA
 139597,Micah,Zomar,U,19790813,USA
 139598,Juan Manuel,Bertoldi,U,19810202,ARG
-139599,Kirt,Cable,U,19770426,ECA
+139599,Kirt,Cable,U,19770426,ANT
 139600,Damian,Ciaccia,U,19740516,ARG
 139601,John,Fry,U,19740226,RSA
 139602,Tom,Klein,U,19700929,USA
@@ -45487,7 +45487,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 200451,Vladyslav,Lobak,U,19981005,UKR
 200452,Patrick,Zahraj,U,19990717,GER
 200453,Milos,Mihajlovic,R,19960206,SRB
-200454,Nicolas,Ancedy,L,19950318,GUD
+200454,Nicolas,Ancedy,L,19950318,FRA
 200455,Aliaksandr,Liaonenka,U,19990317,BLR
 200456,Martin,Borisiouk,U,20000704,BLR
 200457,Jannik,Opitz,U,19980415,GER
@@ -47492,7 +47492,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 202456,Eric,Diaz,,19911129,PUR
 202457,Daniel,Gutierrez,,19960804,CRC
 202458,Angelin,Mvogo,,19700227,CMR
-202459,Richard,Hughes,,19610731,ECA
+202459,Richard,Hughes,,19610731,ANT
 202460,Alejandro,Madrigal Alpizar,,19820218,CRC
 202461,Octavio,De La Sobera,,19720923,PAR
 202462,Yasitha,De Silva,,19950703,SRI
@@ -48397,7 +48397,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 203361,Collin,Parker,U,19740328,USA
 203362,Carlos,Parra,U,19750702,VEN
 203363,Guillermo,Bernal,U,19700530,DOM
-203364,Michel,Fremiot,U,19590513,GUD
+203364,Michel,Fremiot,U,19590513,FRA
 203365,Lionel,Marjou,U,19720913,FRA
 203366,Ronel,Pierre,U,19670727,HAI
 203367,Theodore,Pierre,U,19681119,HAI
@@ -51437,7 +51437,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 206401,Arslan,Kellou,U,20000827,USA
 206402,Martin,Zeljenka,U,19980212,HUN
 206403,Arturo,Perales Terada,U,20010123,MEX
-206404,Sherwin,Foo,R,19980111,SGP
+206404,Sherwin,Foo,R,19980111,SIN
 206405,Patrick,Foley,U,19950412,GBR
 206406,Francis,Pare,R,19930831,CAN
 206407,Munashe,Chingono,R,19961120,ZIM
@@ -51492,7 +51492,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 206456,Kornel,Kimaszewski,R,19980617,POL
 206457,Zlatan,Dzumhur,U,19970715,CRO
 206458,Nedim,Vilogorac,U,19800526,BIH
-206459,Joshua,Liu,U,19960726,SGP
+206459,Joshua,Liu,U,19960726,SIN
 206460,Dennis Philip,Bogdan,U,19990216,ROU
 206461,Dacian,Simion,U,19980502,ROU
 206462,Carlos,Pavon Conde,R,19800930,ESP
@@ -52213,7 +52213,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 207177,Will,Davies,U,19990128,GBR
 207178,Joe,Tyler,U,19981101,GBR
 207179,Tahir Deniz,Turgut,R,19990403,TUR
-207180,Shaheed,Alam,R,19980709,SGP
+207180,Shaheed,Alam,R,19980709,SIN
 207181,Govind,Nanda,R,20010217,USA
 207182,Emilio,Nava,U,20011202,USA
 207183,Ishaque,Eqbal,R,19980117,IND
@@ -52351,7 +52351,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 207315,Sage,Leaman,U,19981129,USA
 207316,Patrick,Keane,U,19951130,GBR
 207317,Fabien,Calloud,U,20000220,FRA
-207318,Jonathan Kyle,Tan,U,19980718,SGP
+207318,Jonathan Kyle,Tan,U,19980718,SIN
 207319,Chunyu,Chen,U,20000219,CHN
 207320,Louis,Gorregues,U,20001004,FRA
 207321,John,Rives,U,19601027,USA
@@ -52405,7 +52405,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 207369,Sardor,Ergashev,U,20000405,UZB
 207370,Ryusuke,Horiuchi,U,19980921,JPN
 207371,Keigo,Shimizu,U,19990202,JPN
-207372,Justin,Oeni,U,20001021,SGP
+207372,Justin,Oeni,U,20001021,SIN
 207373,Maxim,Turyev,R,20000918,RUS
 207374,Michal,Lusovsky,U,19990331,CZE
 207375,Martin,Simecek,U,19990208,CZE
@@ -52450,7 +52450,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 207414,Rob,Van Den Berg,U,19960610,NED
 207415,Daniel,Michalski,U,20000111,POL
 207416,Jan,Galka,U,19990924,POL
-207417,Christopher,Cajigan,U,19980628,NMI
+207417,Christopher,Cajigan,U,19980628,GUM
 207418,Alexander,Knight,U,19961211,USA
 207419,Matvey,Minin,U,20010628,RUS
 207420,Chun Chi,Han,U,19960812,TPE
@@ -54080,7 +54080,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 209044,Hayato,Kudo,U,,JPN
 209045,Nikit,Reddy,U,,USA
 209046,Atharva,Sharma,R,,IND
-209047,Gareth,Ong,U,,SGP
+209047,Gareth,Ong,U,,SIN
 209048,Eduardo,Roldan,U,,MEX
 209049,Edward,Birungi,R,,UGA
 209050,Taewoo,Koo,U,,KOR
@@ -54543,7 +54543,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 209507,Gustavo,Teisen Pereira,U,20000602,BRA
 209508,Agustin,Moreno,R,19991009,MEX
 209509,Thomas,Pavlekovich Smith,U,,AUS
-209510,Nino,Ehrenschneider,U,,DEU
+209510,Nino,Ehrenschneider,U,,GER
 209511,Jean Marc,Malkowski,U,,SUI
 209512,Tom,Paris ,U,,FRA
 209513,Pavel,Verbin,U,,RUS
@@ -54889,7 +54889,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 209853,Peerapat,Dedthonglang,U,20020108,THA
 209854,Tanapatt,Nirundorn,U,20040110,THA
 209855,James,Hopper,U,,GBR
-209856,Nico,Kleber,U,,DEU
+209856,Nico,Kleber,U,,GER
 209857,Leandro,Riedi,U,,SUI
 209858,Vladimir,Osminkin,U,,RUS
 209859,Rostislav,Galfinger,U,20021112,KAZ
@@ -54899,7 +54899,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 209863,Leo,Borg,U,20030515,SWE
 209864,Tommaso,Compagnucci ,U,,ITA
 209865,Peter Benjamin,Privara ,U,,SVK
-209866,Karlis,Ozolins,U,,LVA
+209866,Karlis,Ozolins,U,,LAT
 209867,Daniil,Ostapenkov,,20030508,BLR
 209868,Kaipo,Marshall,,20020321,BAR
 209869,Rodrigo,Crespo Piedra,,20010531,CRC
@@ -54910,7 +54910,7 @@ player_id,first_name,last_name,hand,birth_date,country_code
 209874,Maks,Kasnikowski,,20030706,POL
 209875,Alex,Barrena,U,,ARG
 209876,Sergo,Sikharulidze,U,,GEO
-209877,Stevan,Popovic,U,,DEU
+209877,Stevan,Popovic,U,,GER
 209878,Connor,Kruger,U,,ZAF
 209879,Luc,Koenig,U,,ZAF
 209880,Carl,Roothman,U,,ZAF

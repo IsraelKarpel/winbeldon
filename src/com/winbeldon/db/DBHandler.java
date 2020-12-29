@@ -481,7 +481,7 @@ public class DBHandler {
             rs.next();
             return rs.getString(COUNTRY_NAME);
         }  catch (SQLException e) {
-            System.out.println("getCountryNameByPlayerID: ERROR executeQuery - " + e.getMessage());
+            System.out.println("getCountryNameByPlayerID: ERROR executeQuery - " + e.getMessage() + " ["+playerID+"]");
             return null;
         } catch (NullPointerException e) {
             System.out.println(("getCountryNameByPlayerID: ERROR NullPointerException - " + e.getMessage()));
