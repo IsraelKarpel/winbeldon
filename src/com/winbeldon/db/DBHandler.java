@@ -4,6 +4,7 @@ import com.mysql.cj.conf.ConnectionUrlParser;
 import com.winbeldon.model.Country;
 import com.winbeldon.model.Player;
 import com.winbeldon.model.RankPlayer;
+import com.winbeldon.model.TournamentPlayer;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -484,6 +485,36 @@ public class DBHandler {
             System.out.println(("getCountryNameByPlayerID: ERROR NullPointerException - " + e.getMessage()));
             return null;
         }
+    }
 
+    public List<TournamentPlayer> getBestPlayersByTournament(){
+        long start = System.currentTimeMillis();
+        List<TournamentPlayer> players = new ArrayList<>();
+        String QUERY = "SELECT tourney_name, YEAR(tourney_date) as year, first_name, last_name\n" +
+                "FROM players\n" +
+                "         JOIN (\n" +
+                "    SELECT tourney_name, tourney_date, winner_id\n" +
+                "    FROM tournaments\n" +
+                "             JOIN (SELECT tourney_id, tourney_date, winner_id\n" +
+                "                   FROM matches_singles\n" +
+                "                   WHERE round = 'F'\n" +
+                "                     AND tourney_id = ANY (SELECT tourney_id\n" +
+                "                                           FROM tournaments\n" +
+                "                                           WHERE tourney_level = 'G')) w ON w.tourney_id = tournaments.tourney_id) w2\n" +
+                "              ON players.player_id = w2.winner_id\n" +
+                "ORDER BY year DESC";
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
+            while(rs.next()){
+                players.add(new TournamentPlayer(rs.getString(FIRST_NAME),rs.getString(LAST_NAME),
+                        rs.getLong("year"),rs.getString("tourney_name")));
+            }
+            return players;
+        } catch (SQLException e) {
+            System.out.println("getCountryNameByPlayerID: ERROR executeQuery - " + e.getMessage());
+            return null;
+        } catch (NullPointerException e) {
+            System.out.println(("getCountryNameByPlayerID: ERROR NullPointerException - " + e.getMessage()));
+            return null;
+        }
     }
 }
