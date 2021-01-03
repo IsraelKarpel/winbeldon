@@ -24,6 +24,7 @@ public class MainWindow extends JFrame {
     private JComboBox player3comboBox;
     private JComboBox player4comboBox;
     private JButton bestEachCountryButton;
+    private JButton bestPlayerPerTourButton;
 
     private MainWindow() {
         setContentPane(panelMain);
@@ -49,6 +50,7 @@ public class MainWindow extends JFrame {
             new ComparePlayersWindow(player1, player2, player3, player4);
         });
         bestEachCountryButton.addActionListener(e -> new BestPlayerEachCountry());
+        bestPlayerPerTourButton.addActionListener(e -> new BestPlayerPerTournament());
     }
 
     private Country getSelectedCountry() {
