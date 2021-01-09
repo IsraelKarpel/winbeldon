@@ -16,7 +16,6 @@ import java.util.List;
 
 import static com.winbeldon.Constants.*;
 
-// TODO 14/12/2020: make it singleton!
 public class DBHandler {
     private final static DBHandler INSTANCE = new DBHandler();
     final String HOST_KEY = "host";
