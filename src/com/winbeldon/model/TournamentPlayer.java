@@ -1,8 +1,5 @@
 package com.winbeldon.model;
 
-import java.util.Date;
-import java.util.zip.DataFormatException;
-
 public class TournamentPlayer {
     private final String firstName;
     private final String lastName;
