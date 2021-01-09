@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3306,
-  "schema": "winbeldon",
-  "user": "root",
-  "password": "db202020"
+  "schema": "team13",
+  "user": "team13",
+  "password": "0013"
 }

@@ -102,7 +102,7 @@ public class DBHandler {
         System.out.print("Getting countries from DB... ");
 
         String QUERY = "SELECT *" +
-                " FROM winbeldon.countries" +
+                " FROM countries" +
                 " ORDER BY country_name";
 
         List<Country> countries = new ArrayList<>();
@@ -134,7 +134,7 @@ public class DBHandler {
 
         System.out.print("Getting ranking dates from DB... ");
         String QUERY = "SELECT DISTINCT rank_date" +
-                " FROM winbeldon.rankings" +
+                " FROM rankings" +
                 " ORDER BY rank_date DESC";
 
         List<Date> rankingDates = new ArrayList<>();
@@ -164,7 +164,7 @@ public class DBHandler {
 
         System.out.println("Getting players by country from DB... ");
         String QUERY = "SELECT players.player_id, first_name, last_name, rankings.player_rank, points" +
-                " FROM winbeldon.players, winbeldon.rankings" +
+                " FROM players, rankings" +
                 " WHERE players.player_id=rankings.player_id" +
                 " AND country_code='" + countryCode + "'" +
                 " AND rank_date='" + rankingDate + "'" +
@@ -201,7 +201,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
 
         String QUERY = "SELECT *" +
-                " FROM winbeldon.players" +
+                " FROM players" +
                 " WHERE '" + id + "' = player_id";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
             rs.next();
@@ -231,7 +231,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
         System.out.println("Getting all players DB... ");
 
-        String QUERY = "SELECT * FROM winbeldon.players ORDER BY first_name, last_name";
+        String QUERY = "SELECT * FROM players ORDER BY first_name, last_name";
         List<Player> playerList = new ArrayList<>();
 
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
@@ -266,7 +266,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
 
         String QUERY_TOTAL_WINS = "SELECT COUNT(*) AS total_wins" +
-                " FROM winbeldon.matches_singles" +
+                " FROM matches_singles" +
                 " WHERE winner_id = " + id;
 
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_WINS)) {
@@ -290,7 +290,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
 
         String QUERY_TOTAL_FINALS_WINS = "SELECT COUNT(*) AS total_finals_wins" +
-                " FROM winbeldon.matches_singles" +
+                " FROM matches_singles" +
                 " WHERE winner_id = " + id +
                 " AND round = 'F'";
 
@@ -315,7 +315,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
 
         String QUERY_TOTAL_WINS = "SELECT COUNT(*) AS total_wins" +
-                " FROM winbeldon.matches_doubles" +
+                " FROM matches_doubles" +
                 " WHERE winner1_id = " + id + " OR winner2_id = " + id;
 
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_TOTAL_WINS)) {
@@ -339,7 +339,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
 
         String QUERY_TOTAL_FINALS_WINS = "SELECT COUNT(*) AS total_finals_wins" +
-                " FROM winbeldon.matches_doubles" +
+                " FROM matches_doubles" +
                 " WHERE (winner1_id = " + id + " OR winner2_id = " + id + ")" +
                 " AND round = 'F'";
 
@@ -364,7 +364,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
 
         String QUERY_BEST_RANK = "SELECT MIN(player_rank) " +
-                "FROM winbeldon.rankings " +
+                "FROM rankings " +
                 "WHERE player_id = " + id;
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_BEST_RANK)) {
             rs.next();
@@ -387,9 +387,9 @@ public class DBHandler {
         long start = System.currentTimeMillis();
 
         String QUERY_DATE_OF_BEST_RANK = "SELECT rank_date" +
-                " FROM winbeldon.rankings " +
+                " FROM rankings " +
                 "WHERE player_id=" + id + " AND player_rank = (SELECT MIN(player_rank)" +
-                " FROM winbeldon.rankings WHERE player_id=" + id + ")";
+                " FROM rankings WHERE player_id=" + id + ")";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
             rs.next();
             Date date = rs.getDate("rank_date");
@@ -411,7 +411,7 @@ public class DBHandler {
         long start = System.currentTimeMillis();
         List<ConnectionUrlParser.Pair<Date, Double>> playerDateScoreList = new ArrayList<>();
 
-        String QUERY_DATE_OF_BEST_RANK = "SELECT rankings.rank_date, rankings.points FROM winbeldon.rankings " +
+        String QUERY_DATE_OF_BEST_RANK = "SELECT rankings.rank_date, rankings.points FROM rankings " +
                 "WHERE rankings.player_id=" + playerID + " ORDER BY rankings.rank_date;";
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY_DATE_OF_BEST_RANK)) {
             while (rs.next()) {
@@ -472,7 +472,7 @@ public class DBHandler {
     public String getCountryNameByPlayerID(int playerID) {
         long start = System.currentTimeMillis();
 
-        String QUERY = "SELECT country_name FROM winbeldon.countries, Players \n" +
+        String QUERY = "SELECT country_name FROM countries, Players \n" +
                 "WHERE countries.country_code = players.country_code AND\n" +
                 "players.player_id = " + playerID;
         try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(QUERY)) {
